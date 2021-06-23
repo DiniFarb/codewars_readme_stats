@@ -13,24 +13,215 @@ app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
 
+app.get('/', async(req, res) => {
+    res.redirect('https://github.com/andreasvogt89/codewars_api');
+});
+
 /**
  * Rely to codewars user infos
  */
 app.get('/codewars', async(req, res, next) => {
     const codewars_Url = 'https://www.codewars.com/api/v1/users/';
     try {
-    const { data } = await axios.get(`${codewars_Url}/${req.query.user}`);
-    const answer = `
-         <svg
-        width="495"
-        height="195"
-        viewBox="0 0 495 195"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >${data}</svg>`;
-    res.send(answer);    
-    } catch(err) {
-       next(err); 
+        const { data } = await axios.get(`${codewars_Url}/${req.query.user}`);
+        res.send(`<svg
+  width="495"
+  height="195"
+  viewBox="0 0 495 195"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <style>
+    .header {
+      font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+      fill: #F1F5F3;
+      animation: fadeInAnimation 0.8s ease-in-out forwards;
+    }
+    
+.stat {
+font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #BB432C;
+}
+.stagger {
+opacity: 0;
+animation: fadeInAnimation 0.3s ease-in-out forwards;
+}
+.rank-text {
+font: 800 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #BB432C; 
+animation: scaleInAnimation 0.3s ease-in-out forwards;
+}
+
+.bold { font-weight: 700 }
+.icon {
+fill: #BB432C;
+display: none;
+}
+
+.rank-circle-rim {
+stroke: #BB432C;
+fill: none;
+stroke-width: 6;
+opacity: 0.2;
+}
+.rank-circle {
+stroke: #BB432C;
+stroke-dasharray: 250;
+fill: none;
+stroke-width: 6;
+stroke-linecap: round;
+opacity: 0.8;
+transform-origin: -10px 8px;
+transform: rotate(-90deg);
+animation: rankAnimation 1s forwards ease-in-out;
+}
+
+@keyframes rankAnimation {
+from {
+  stroke-dashoffset: 251.32741228718345;
+}
+to {
+  stroke-dashoffset: 123.09285659688518;
+}
+}
+
+
+
+    
+/* Animations */
+@keyframes scaleInAnimation {
+from {
+  transform: translate(-5px, 5px) scale(0);
+}
+to {
+  transform: translate(-5px, 5px) scale(1);
+}
+}
+@keyframes fadeInAnimation {
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
+}
+
+    
+  </style>
+
+  undefined
+
+  <rect
+    data-testid="card-bg"
+    x="0.5"
+    y="0.5"
+    rx="4.5"
+    height="99%"
+    stroke="#BB432C"
+    width="494"
+    fill="#262729"
+    stroke-opacity="0"
+  />
+
+  
+<g
+  data-testid="card-title"
+  transform="translate(25, 35)"
+>
+  <g transform="translate(0, 0)">
+<text
+  x="0"
+  y="0"
+  class="header"
+  data-testid="header"
+>${data.name}'s Codewars Stats</text>
+</g>
+</g>
+
+
+  <g
+    data-testid="main-card-body"
+    transform="translate(0, 55)"
+  >
+    
+<g data-testid="rank-circle" 
+    transform="translate(400, 47.5)">
+  <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
+  <circle class="rank-circle" cx="-10" cy="8" r="40" />
+  <g class="rank-text">
+    <text
+      x="0"
+      y="0"
+      alignment-baseline="central"
+      dominant-baseline="central"
+      text-anchor="middle"
+    >
+      ${data.ranks.overall.name}
+    </text>
+  </g>
+</g>
+
+<svg x="0" y="0">
+<g transform="translate(0, 0)">
+<g class="stagger" style="animation-delay: 450ms" transform="translate(25, 0)">
+
+<text class="stat bold"  y="12.5">Clan:</text>
+<text 
+  class="stat" 
+  x="170" 
+  y="12.5" 
+  data-testid="stars"
+>${data.clan}</text>
+</g>
+</g><g transform="translate(0, 25)">
+<g class="stagger" style="animation-delay: 600ms" transform="translate(25, 0)">
+
+<text class="stat bold"  y="12.5">Leader board position:</text>
+<text 
+  class="stat" 
+  x="170" 
+  y="12.5" 
+  data-testid="commits"
+>${data.leaderboardPosition}</text>
+</g>
+</g><g transform="translate(0, 50)">
+<g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
+
+<text class="stat bold"  y="12.5">Honor:</text>
+<text 
+  class="stat" 
+  x="170" 
+  y="12.5" 
+  data-testid="prs"
+>${data.honor}</text>
+</g>
+</g><g transform="translate(0, 75)">
+<g class="stagger" style="animation-delay: 900ms" transform="translate(25, 0)">
+
+<text class="stat bold"  y="12.5">Score:</text>
+<text 
+  class="stat" 
+  x="170" 
+  y="12.5" 
+  data-testid="issues"
+>${data.ranks.overall.score}</text>
+</g>
+</g><g transform="translate(0, 100)">
+<g class="stagger" style="animation-delay: 1050ms" transform="translate(25, 0)">
+
+<text class="stat bold"  y="12.5">Solved Katas:</text>
+<text 
+  class="stat" 
+  x="170" 
+  y="12.5" 
+  data-testid="contribs"
+>${data.codeChallenges.totalCompleted}</text>
+</g>
+</g>
+</svg> 
+
+  </g>
+</svg>`)
+    } catch (err) {
+        next(err);
     }
 });
 

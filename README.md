@@ -3,7 +3,7 @@
 Display your codewars rank in github readme
 
 TODO
-- [ ] redirect / to this github repo
-- [ ] add some cards as response to /codewars
+- [X] redirect / to this github repo
+- [ ] add some cards as response to /codewars => is not working :(
 - [ ] check security
-- [ ] release to github.r2v.ch
+- [X] release to github.r2v.ch
