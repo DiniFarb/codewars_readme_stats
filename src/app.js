@@ -1,5 +1,4 @@
 const express = require('express');
-const morgan = require('morgan');
 const helmet = require('helmet');
 const axios = require('axios');
 const cors = require('cors');
@@ -7,24 +6,33 @@ require('dotenv').config();
 const middlewares = require('./middlewares');
 const app = express();
 const logger = require('./logger');
-
+const LevelColors = {
+    1: "#866CC7",
+    2: "#866CC7",
+    3: "#3C7EBB",
+    4: "#3C7EBB",
+    5: "#ECB613",
+    6: "#ECB613",
+    7: "#E6E6E6",
+    8: "#E6E6E6"
+};
 app.use(helmet());
-app.use(morgan('tiny'));
 app.use(cors());
-app.use(express.json());
 
 app.get('/', async(req, res) => {
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    logger.info(`redirect: ${ip}`);
     res.redirect('https://github.com/andreasvogt89/codewars_api');
 });
 
-/**
- * Rely to codewars user infos
- */
 app.get('/codewars', async(req, res, next) => {
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    logger.info(`crad request: ${ip}`);
     const codewars_Url = 'https://www.codewars.com/api/v1/users/';
     try {
         const { data } = await axios.get(`${codewars_Url}/${req.query.user}`);
-        res.setHeader("Content-Type", "image/svg+xml")
+        res.setHeader("Content-Type", "image/svg+xml");
+        const level = data.ranks.overall.name.split('')[0];
         res.send(`<svg width="495" height="195" viewBox="0 0 495 195" fill="none" xmlns="http://www.w3.org/2000/svg">
         <style>
           .header {
@@ -41,7 +49,8 @@ app.get('/codewars', async(req, res, next) => {
       animation: fadeInAnimation 0.3s ease-in-out forwards;
       }
       .rank-text {
-      font: 800 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #BB432C; 
+      fill: ${LevelColors[level]};
+      font: 600 30px 'Segoe UI', Ubuntu, Sans-Serif; 
       animation: scaleInAnimation 0.3s ease-in-out forwards;
       }
       
@@ -52,12 +61,10 @@ app.get('/codewars', async(req, res, next) => {
       }
       
       .rank-hex {
-      stroke: #BB432C;
-      fill: none;
-      stroke-width: 2;
+      stroke: ${LevelColors[level]};
+      fill: #181919;
+      stroke-width: 3;
       opacity: 0.8;
-      transform-origin: -10px 8px;
-      transform: rotate(-90deg);
       animation: rankAnimation 1s forwards ease-in-out;
       }
       
@@ -127,8 +134,8 @@ app.get('/codewars', async(req, res, next) => {
         >
           
       <g 
-      transform="translate(400, 47.5)">
-          <polygon class="rank-hex" points="300,150 225,280 75,280 0,150 75,20 225,20"></polygon>
+      transform="translate(400, 50)">
+        <polygon class="rank-hex" points="-60,7.5 -45,-20 35,-20 50,7.5 35,35 -45,35"></polygon>
         <g class="rank-text">
           <text
             x="0"
@@ -195,9 +202,9 @@ app.get('/codewars', async(req, res, next) => {
       </g>
       </g>
       </svg>
-      
-      </g>
-      </svg>`)
+
+</g>
+</svg>`)
     } catch (err) {
         next(err);
     }
