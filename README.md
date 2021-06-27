@@ -19,5 +19,5 @@ TODO
 - [X] redirect bas  "/" to this github repo
 - [ ] add parameter for card costumization
 - [ ] check security 
-    - [ ] allow only few request per minute for every source 
+    - [x] allow only few request per minute for every source 
 - [X] release to github.r2v.ch
