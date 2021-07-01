@@ -13,14 +13,13 @@ Just replace username by yours and place it in your readme
 [![Codewars](https://github.r2v.ch/codewars?user=username)](https://www.codewars.com/users/username)
 ```
 
+or if you want yor name instead of your username displayed 
+```
+[![Codewars](https://github.r2v.ch/codewars?user=username&name=true)](https://www.codewars.com/users/username)
+```
 
-Parameters:
 
-- `user`    `<String>`  your codewars username
-- `name`    `<bool>`    true if you want yor name instead of your username displayed 
-
-
-Markup :  - - - -
+- - - -
 
 TODO
 - [X] redirect base "github.r2v.ch" to this github repo
