@@ -6,7 +6,7 @@ But I will further develop it and I am happy to take any constribution :)
 
 Display your codewars stats in github readme:
 
-[![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89)](https://www.codewars.com/users/andreasvogt89)
+[![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true)](https://www.codewars.com/users/andreasvogt89)
 
 Just replace username by yours and place it in your readme
 ```
