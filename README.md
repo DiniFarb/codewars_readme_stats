@@ -1,9 +1,5 @@
 # codewars stats 
 
-
-Hi, I have just started to develop this nice little codewars card. It is still in early construction and there is no warranty for functionality. 
-But I will further develop it and I am happy to take any constribution :)  
-
 Display your codewars stats in github readme:
 
 [![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true)](https://www.codewars.com/users/andreasvogt89)
@@ -29,7 +25,5 @@ TODO
     - [x] use heroku and hostpoint for hosting the app  
 - [X] release to github.r2v.ch which points to heroku
 - [ ] configure pull request pipline in heroku
-
-
 
 ### Many Thanks to the guys of https://github.com/anuraghazra/github-readme-stats where I got the idea to do the same for codewars :)
