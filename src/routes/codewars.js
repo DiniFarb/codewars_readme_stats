@@ -41,6 +41,7 @@ router.get('/', async(req, res, next) => {
         res.setHeader("Cache-Control", `public, max-age=7200`);
         const level = data.ranks.overall.name.split('')[0];
         let cardTemplate = fs.readFileSync(path.join(__dirname + '../../templates/codewarscard.svg'), 'utf8');
+        //TODO: This does not work yet
         if(req.query.top_languages){
           cardTemplate = setIcons(cardTemplate,data.ranks.languages);
         }

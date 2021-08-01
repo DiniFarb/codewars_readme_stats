@@ -24,9 +24,12 @@ or if you want yor name instead of your username displayed
 TODO
 - [X] redirect base "github.r2v.ch" to this github repo
 - [ ] add parameter for card costumization
-- [ ] check security 
-    - [x] allow only few request per minute for every source 
-- [X] release to github.r2v.ch
+- [x] check security 
+    - [x] allow only few request per minute for every source
+    - [x] use heroku and hostpoint for hosting the app  
+- [X] release to github.r2v.ch which points to heroku
+- [ ] configure pull request pipline in heroku
+
 
 
 ### Many Thanks to the guys of https://github.com/anuraghazra/github-readme-stats where I got the idea to do the same for codewars :)
