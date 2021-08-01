@@ -1,0 +1,117 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+  <svg width="500" height="195" viewBox="0 0 500 195" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .header {
+      font: 600 20px 'Segoe UI', Ubuntu, Sans-Serif;
+      fill: #F1F5F3;
+      animation: fadeInAnimation 0.8s ease-in-out forwards;
+      }
+      .stat {
+      font: 600 16px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #BB432C;
+      }
+      .stats {
+      opacity: 0;
+      animation: fadeInAnimation 0.3s ease-in-out forwards;
+      }
+      .rank-text {
+      fill: {rankColor};
+      font: 600 30px 'Segoe UI', Ubuntu, Sans-Serif;
+      animation: scaleInAnimation 0.3s ease-in-out forwards;
+      }
+      .topLanguages{
+        {topLanguages}
+      }
+      .bold { font-weight: 700 }
+      .rank-hex {
+      stroke: {rankColor};
+      fill: #181919;
+      stroke-width: 3;
+      opacity: 0.8;
+      animation: rankAnimation 1s forwards ease-in-out;
+      }
+      @keyframes rankAnimation {
+      from {
+      stroke-dashoffset: 251.32741228718345;
+      }
+      to {
+      stroke-dashoffset: 123.09285659688518;
+      }
+      }
+      /* Animations */
+      @keyframes scaleInAnimation {
+      from {
+      transform: translate(-5px, 5px) scale(0);
+      }
+      to {
+      transform: translate(-5px, 5px) scale(1);
+      }
+      }
+      @keyframes fadeInAnimation {
+      from {
+      opacity: 0;
+      }
+      to {
+      opacity: 1;
+      }
+    }
+  </style>
+  <rect data-testid="card-bg" x="0.5" y="0.5" rx="4.5" height="99%" stroke="#BB432C" width="499" fill="#262729" stroke-opacity="0"></rect>
+    <g transform="translate(25, 35)">
+      <g transform="translate(0, 0)">
+        <text x="0" y="0" class="header">{name}'s Codewars Stats</text>
+      </g>
+    </g>
+    <g transform="translate(0, 55)">
+      <g transform="translate(400, 50)">
+        <polygon class="rank-hex" points="-60,7.5 -45,-20 35,-20 50,7.5 35,35 -45,35"></polygon>
+        <g class="rank-text">
+          <text x="0" y="0" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">
+            {rankName}
+          </text>
+        </g>
+      </g>
+    <svg x="0" y="0">
+    <g transform="translate(0, 0)">
+      <g class="stats" style="animation-delay: 450ms" transform="translate(25, 0)">
+        <text class="stat bold" y="12.5">Clan:</text>
+        <text class="stat" x="170" y="12.5">{clan}
+        </text>
+      </g>
+    </g>
+    <g transform="translate(0, 25)">
+      <g class="stats" style="animation-delay: 600ms" transform="translate(25, 0)">
+        <text class="stat bold" y="12.5">Position:</text>
+        <text class="stat" x="170" y="12.5">{leaderboardPosition}
+        </text>
+      </g>
+    </g>
+    <g transform="translate(0, 50)">
+      <g class="stats" style="animation-delay: 750ms" transform="translate(25, 0)">
+        <text class="stat bold" y="12.5">Honor:</text>
+        <text class="stat" x="170" y="12.5">{honor}
+        </text>
+      </g>
+    </g>
+    <g transform="translate(0, 75)">
+      <g class="stats" style="animation-delay: 900ms" transform="translate(25, 0)">
+        <text class="stat bold" y="12.5">Score:</text>
+        <text class="stat" x="170" y="12.5">{score}
+        </text>
+      </g>
+    </g>
+    <g transform="translate(0, 100)">
+      <g class="stats" style="animation-delay: 1050ms" transform="translate(25, 0)">
+        <text class="stat bold" y="12.5">Solved Katas:</text>
+        <text class="stat" x="170" y="12.5">{totalCompleted}
+        </text>
+      </g>
+    </g>
+    </svg>
+    </g>
+    {icons}
+  </svg>
+</body></html>

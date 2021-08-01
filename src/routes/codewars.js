@@ -2,6 +2,9 @@ const express = require('express');
 const logger = require('../logger');
 const router = express.Router();
 const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
+const simpleIcons = require('simple-icons');
 
 const LevelColors = {
     1: "#866CC7",
@@ -14,171 +17,81 @@ const LevelColors = {
     8: "#E6E6E6"
 };
 
+let top_languages_template = (icons) => `
+<g transform="translate(130, 190)">
+<g class="stats" style="animation-delay: 1050ms">      
+  <text class="stat bold"  y="12.5">Top trained languages</text>
+  <text 
+    class="stat" 
+    x="170" 
+    y="12.5" 
+  >
+  </text>
+  ${icons}
+  </g>
+</g>`
+
 router.get('/', async(req, res, next) => {
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     logger.info(`crad request: ${ip}`);
-    const codewars_Url = 'https://www.codewars.com/api/v1/users/';
+    const codewars_Url = 'https://www.codewars.com/api/v1/users';
     try {
         const { data } = await axios.get(`${codewars_Url}/${req.query.user}`);
         res.setHeader("Content-Type", "image/svg+xml");
         res.setHeader("Cache-Control", `public, max-age=7200`);
         const level = data.ranks.overall.name.split('')[0];
-        res.send(`
-        <svg width="495" height="195" viewBox="0 0 495 195" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <style>
-          .header {
-            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
-            fill: #F1F5F3;
-            animation: fadeInAnimation 0.8s ease-in-out forwards;
-          }
-          .stat {
-          font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #BB432C;
-          }
-          .stats {
-          opacity: 0;
-          animation: fadeInAnimation 0.3s ease-in-out forwards;
-          }
-          .rank-text {
-          fill: ${LevelColors[level]};
-          font: 600 30px 'Segoe UI', Ubuntu, Sans-Serif; 
-          animation: scaleInAnimation 0.3s ease-in-out forwards;
-          }
-          .bold { font-weight: 700 }
-          .icon {
-          fill: #BB432C;
-          display: none;
-          }
-          .rank-hex {
-          stroke: ${LevelColors[level]};
-          fill: #181919;
-          stroke-width: 3;
-          opacity: 0.8;
-          animation: rankAnimation 1s forwards ease-in-out;
-          }
-          @keyframes rankAnimation {
-          from {
-            stroke-dashoffset: 251.32741228718345;
-          }
-          to {
-            stroke-dashoffset: 123.09285659688518;
-          }
-          }
-          /* Animations */
-          @keyframes scaleInAnimation {
-          from {
-            transform: translate(-5px, 5px) scale(0);
-          }
-          to {
-            transform: translate(-5px, 5px) scale(1);
-          }
-          }
-          @keyframes fadeInAnimation {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-          }
-        </style>
-        <rect
-          data-testid="card-bg"
-          x="0.5"
-          y="0.5"
-          rx="4.5"
-          height="99%"
-          stroke="#BB432C"
-          width="494"
-          fill="#262729"
-          stroke-opacity="0"
-        />
-        <g transform="translate(25, 35)" >
-          <g transform="translate(0, 0)">
-            <text
-              x="0"
-              y="0"
-              class="header"
-            >${req.query.name ? data.name : data.username}'s Codewars Stats</text>
-          </g>
-        </g>
-        <g transform="translate(0, 55)" >
-          <g transform="translate(400, 50)">
-            <polygon class="rank-hex" points="-60,7.5 -45,-20 35,-20 50,7.5 35,35 -45,35"></polygon>
-            <g class="rank-text">
-              <text
-                x="0"
-                y="0"
-                alignment-baseline="central"
-                dominant-baseline="central"
-                text-anchor="middle"
-              >
-                ${data.ranks.overall.name}
-              </text>
-            </g>
-          </g>
-        <svg x="0" y="0">
-        <g transform="translate(0, 0)">
-          <g class="stats" style="animation-delay: 450ms" transform="translate(25, 0)">
-            <text class="stat bold"  y="12.5">Clan:</text>
-            <text 
-              class="stat" 
-              x="170" 
-              y="12.5" 
-            >${data.clan}
-            </text>
-          </g>
-        </g>
-        <g transform="translate(0, 25)">
-          <g class="stats" style="animation-delay: 600ms" transform="translate(25, 0)">
-            <text class="stat bold"  y="12.5">Leader board position:</text>
-            <text 
-              class="stat" 
-              x="170" 
-              y="12.5" 
-            >${data.leaderboardPosition}
-            </text>
-          </g>
-        </g>
-        <g transform="translate(0, 50)">
-          <g class="stats" style="animation-delay: 750ms" transform="translate(25, 0)">
-            <text class="stat bold"  y="12.5">Honor:</text>
-            <text 
-              class="stat" 
-              x="170" 
-              y="12.5" 
-            >${data.honor}
-            </text>
-          </g>
-        </g>
-        <g transform="translate(0, 75)">
-          <g class="stats" style="animation-delay: 900ms" transform="translate(25, 0)">
-            <text class="stat bold"  y="12.5">Score:</text>
-            <text 
-              class="stat" 
-              x="170" 
-              y="12.5" 
-            >${data.ranks.overall.score}
-            </text>
-          </g>
-        </g>
-        <g transform="translate(0, 100)">
-          <g class="stats" style="animation-delay: 1050ms" transform="translate(25, 0)">      
-            <text class="stat bold"  y="12.5">Solved Katas:</text>
-            <text 
-              class="stat" 
-              x="170" 
-              y="12.5" 
-            >${data.codeChallenges.totalCompleted}
-            </text>
-          </g>
-        </g>
-        </svg>
-        </g>
-        </svg>
-    `)
+        let cardTemplate = fs.readFileSync(path.join(__dirname + '../../templates/codewarscard.svg'), 'utf8');
+        if(req.query.top_languages){
+          cardTemplate = setIcons(cardTemplate,data.ranks.languages);
+        }
+        res.send(cardTemplate
+          .replace('{name}',req.query.name ? data.name : data.username)
+          .replace('{rankName}',data.ranks.overall.name)
+          .replace('{clan}',data.clan)
+          .replace('{leaderboardPosition}',data.leaderboardPosition)
+          .replace('{honor}',data.honor)
+          .replace('{score}',data.ranks.overall.score)
+          .replace('{totalCompleted}',data.codeChallenges.totalCompleted)
+          .replace(/{rankColor}/g,LevelColors[level])
+        );
     } catch (err) {
         next(err);
     }
 });
+
+function setIcons(template,languages){
+  try {
+    let icons = Object.keys(languages);
+    let icons_str = "";
+    let temp = (x) => `
+    <g transform="translate(${x},20)" >
+    {svg}
+    </g>`;
+    let x = -100;
+    icons.forEach((icon, i)=>{
+      let ic = `<svg viewBox="0 0 24 24"><text>${icon}</text></svg>`;
+      try {
+        ic = simpleIcons.Get(icon).svg;
+      } catch (err){
+        logger.error(`No Icon found for: ${icon}`);
+      }
+      if(i > 0) x += 60;
+      let template = temp(x);
+      icons_str = icons_str + template
+      .replace('{svg}',ic)
+      .replace('viewBox="0 0 24 24"','viewBox="0 0 150 150" class="icons" fill="#6795DE"');
+    });
+    return setHeight(template).replace('{icons}', top_languages_template(icons_str));
+  } catch (err){
+    logger.error(`Icons error: ${err}`);
+    return template
+  }
+}
+
+function setHeight(template){
+  let to_replace_str = '<svg width="500" height="195" viewBox="0 0 500 195"'
+  let h = (h) => `<svg width="500" height="${h}" viewBox="0 0 500 ${h}"`;
+  return template.replace(to_replace_str,h(280));
+}
 
 module.exports = router;
