@@ -1,10 +1,5 @@
-<html>
-  <head>
-
-  </head>
-  <body>
-  <svg width="500" height="195" viewBox="0 0 500 195" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <style>
+<svg width="500" height="195" viewBox="0 0 500 195" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
     .header {
       font: 600 20px 'Segoe UI', Ubuntu, Sans-Serif;
       fill: #F1F5F3;
@@ -58,14 +53,14 @@
       opacity: 1;
       }
     }
-  </style>
-  <rect data-testid="card-bg" x="0.5" y="0.5" rx="4.5" height="99%" stroke="#BB432C" width="499" fill="#262729" stroke-opacity="0"></rect>
-    <g transform="translate(25, 35)">
+</style>
+<rect data-testid="card-bg" x="0.5" y="0.5" rx="4.5" height="99%" stroke="#BB432C" width="499" fill="#262729" stroke-opacity="0"></rect>
+  <g transform="translate(25, 35)">
       <g transform="translate(0, 0)">
         <text x="0" y="0" class="header">{name}'s Codewars Stats</text>
       </g>
-    </g>
-    <g transform="translate(0, 55)">
+  </g>
+  <g transform="translate(0, 55)">
       <g transform="translate(400, 50)">
         <polygon class="rank-hex" points="-60,7.5 -45,-20 35,-20 50,7.5 35,35 -45,35"></polygon>
         <g class="rank-text">
@@ -111,7 +106,6 @@
       </g>
     </g>
     </svg>
-    </g>
-    {icons}
-  </svg>
-</body></html>
+  </g>
+  {icons}
+</svg>
