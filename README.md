@@ -1,6 +1,8 @@
 # codewars stats 
 
-Display your codewars stats in github readme:
+Display your codewars stats in github readme.
+
+Example:
 
 [![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true)](https://www.codewars.com/users/andreasvogt89)
 
@@ -18,7 +20,7 @@ or if you want yor name instead of your username displayed
 - - - -
 
 TODO
-- [X] redirect base "github.r2v.ch" to this github repo
+- [X] redirect base "github.r2v.ch" to this repo
 - [ ] add parameter for card costumization
 - [x] check security 
     - [x] allow only few request per minute for every source
