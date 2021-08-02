@@ -17,8 +17,15 @@ const LevelColors = {
     8: "#E6E6E6"
 };
 
+const specialIcons = {
+  shell: {
+    name:"windowsterminal",
+    display_name:"Windows Terminal"
+  }
+}
+
 let top_languages_template = (icons) => `
-<g transform="translate(130, 190)">
+<g transform="translate(150, 190)">
 <g class="stats" style="animation-delay: 1050ms">      
   <text class="stat bold"  y="12.5">Top trained languages</text>
   <text 
@@ -31,6 +38,18 @@ let top_languages_template = (icons) => `
   </g>
 </g>`
 
+let icon_template = (x) => `
+<g transform="translate(${x},20)">
+  {svg}
+</g>`;
+
+let no_icon_found_template = (iconName) => `
+<svg viewBox="0 0 150 150" class="fail-icon-text">
+  <text x="10" y="10" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">
+  ${iconName}
+  </text>
+</svg>`;
+
 router.get('/', async(req, res, next) => {
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     logger.info(`crad request: ${ip}`);
@@ -41,7 +60,6 @@ router.get('/', async(req, res, next) => {
         res.setHeader("Cache-Control", `public, max-age=7200`);
         const level = data.ranks.overall.name.split('')[0];
         let cardTemplate = fs.readFileSync(path.join(__dirname + '../../templates/codewarscard.svg'), 'utf8');
-        //TODO: This does not work yet
         if(req.query.top_languages){
           cardTemplate = setIcons(cardTemplate,data.ranks.languages);
         }
@@ -62,23 +80,28 @@ router.get('/', async(req, res, next) => {
 
 function setIcons(template,languages){
   try {
-    let icons = Object.keys(languages);
+    let x = -108;
     let icons_str = "";
-    let temp = (x) => `
-    <g transform="translate(${x},20)" >
-    {svg}
-    </g>`;
-    let x = -100;
-    icons.forEach((icon, i)=>{
-      let ic = `<svg viewBox="0 0 24 24"><text>${icon}</text></svg>`;
+    Object.keys(languages)
+    .map(k=>{return {score:languages[k].score,name:k}})
+    .sort((a,b)=> a.score + b.score)
+    .slice(0,3)
+    .forEach((icon, i)=>{
+      let ic = ""
       try {
-        ic = simpleIcons.Get(icon).svg;
+        if(specialIcons[icon.name]){
+          ic = simpleIcons.Get(specialIcons[icon.name].name)
+          .svg.replace(specialIcons[icon.name].display_name,icon.name);
+        } else {
+          ic = simpleIcons.Get(icon.name).svg;
+        }
       } catch (err){
-        logger.error(`No Icon found for: ${icon}`);
+        ic = no_icon_found_template(icon.name);
+        logger.error(`No Icon found for: ${icon.name}`);
       }
       if(i > 0) x += 60;
-      let template = temp(x);
-      icons_str = icons_str + template
+      icons_str = icons_str + 
+      icon_template(x)
       .replace('{svg}',ic)
       .replace('viewBox="0 0 24 24"','viewBox="0 0 150 150" class="icons" fill="#6795DE"');
     });

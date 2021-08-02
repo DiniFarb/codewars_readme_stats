@@ -16,12 +16,22 @@ or if you want yor name instead of your username displayed
 [![Codewars](https://github.r2v.ch/codewars?user=username&name=true)](https://www.codewars.com/users/username)
 ```
 
+Additional you can place the parameter codewars?`top_languages=true` if you want to display your top 3 languages as icons like:
+
+```
+[![Codewars](https://github.r2v.ch/codewars?user=username&name=true&top_languages=true)](https://www.codewars.com/users/username)
+```
+This would look like:
+
+[![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true&top_languages=true)](https://www.codewars.com/users/andreasvogt89)
+
 
 - - - -
 
 TODO
 - [X] redirect base "github.r2v.ch" to this repo
 - [ ] add parameter for card costumization
+    - [x] display top 3 languages as icon
 - [x] check security 
     - [x] allow only few request per minute for every source
     - [x] use heroku and hostpoint for hosting the app  

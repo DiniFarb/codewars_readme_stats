@@ -17,6 +17,11 @@
       font: 600 30px 'Segoe UI', Ubuntu, Sans-Serif;
       animation: scaleInAnimation 0.3s ease-in-out forwards;
       }
+      .fail-icon-text {
+        fill: #6795DE;
+        font: 600 10px 'Segoe UI', Ubuntu, Sans-Serif;
+        animation: scaleInAnimation 0.3s ease-in-out forwards;
+        }
       .topLanguages{
         {topLanguages}
       }
