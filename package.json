@@ -1,21 +1,19 @@
 {
   "name": "codewars_api",
   "version": "0.0.1",
-  "description": "simple api",
+  "description": "Display your codewars stats on your github profile",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
   "keywords": [
-    "dev"
+    "codewars"
   ],
   "author": "Andreas Vogt",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.2",
-    "bulma": "^0.9.3",
-    "cheerio": "^1.0.0-rc.10",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",

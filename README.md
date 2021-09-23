@@ -6,12 +6,12 @@ Example:
 
 [![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true)](https://www.codewars.com/users/andreasvogt89)
 
-Just replace username by yours and place it in your readme
+Just replace `username` in the string below by yours and place it in your github profile readme
 ```
 [![Codewars](https://github.r2v.ch/codewars?user=username)](https://www.codewars.com/users/username)
 ```
 
-or if you want yor name instead of your username displayed 
+or if you want yor name instead of your username displayed use the parameter `name=true` like:
 ```
 [![Codewars](https://github.r2v.ch/codewars?user=username&name=true)](https://www.codewars.com/users/username)
 ```
@@ -32,6 +32,7 @@ TODO
 - [X] redirect base "github.r2v.ch" to this repo
 - [ ] add parameter for card costumization
     - [x] display top 3 languages as icon
+    - [ ] improve icons (not all languages are supported yet)
 - [x] check security 
     - [x] allow only few request per minute for every source
     - [x] use heroku and hostpoint for hosting the app  
