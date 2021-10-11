@@ -1,17 +1,17 @@
 # codewars stats 
 
-Display your codewars stats in github readme.
+Display your codewars stats in your github readme.
 
 Example:
 
 [![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true)](https://www.codewars.com/users/andreasvogt89)
 
-Just replace `username` in the string below by yours and place it in your github profile readme
+Just replace all `username` values in the string below by your codewars username and place it in your github profile readme
 ```
 [![Codewars](https://github.r2v.ch/codewars?user=username)](https://www.codewars.com/users/username)
 ```
 
-or if you want yor name instead of your username displayed use the parameter `name=true` like:
+or if you want your codewars `name` instead of `username` displayed, use the parameter `name=true` like:
 ```
 [![Codewars](https://github.r2v.ch/codewars?user=username&name=true)](https://www.codewars.com/users/username)
 ```
