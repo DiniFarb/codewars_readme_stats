@@ -84,7 +84,8 @@ function setIcons(template,languages){
     let icons_str = "";
     Object.keys(languages)
     .map(k=>{return {score:languages[k].score,name:k}})
-    .sort((a,b)=> a.score + b.score)
+    .sort((a,b)=> a.score - b.score)
+    .reverse()
     .slice(0,3)
     .forEach((icon, i)=>{
       let ic = ""
