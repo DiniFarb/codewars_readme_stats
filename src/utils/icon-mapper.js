@@ -1,4 +1,4 @@
-exports = {
+module.exports = {
   shell: {
     name: "windowsterminal",
     display_name: "Shell",

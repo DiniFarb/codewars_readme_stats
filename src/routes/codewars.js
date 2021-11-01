@@ -17,12 +17,7 @@ const LevelColors = {
     8: "#E6E6E6"
 };
 
-const specialIcons = {
-  shell: {
-    name:"windowsterminal",
-    display_name:"Windows Terminal"
-  }
-}
+const specialIcons = require('../utils/icon-mapper');
 
 let top_languages_template = (icons) => `
 <g transform="translate(150, 190)">
