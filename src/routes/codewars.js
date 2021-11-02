@@ -14,7 +14,8 @@ const LevelColors = {
     5: "#ECB613",
     6: "#ECB613",
     7: "#E6E6E6",
-    8: "#E6E6E6"
+    8: "#E6E6E6",
+    dan:"#999999"
 };
 
 const specialIcons = require('../utils/icon-mapper');
@@ -53,14 +54,15 @@ router.get('/', async(req, res, next) => {
         const { data } = await axios.get(`${codewars_Url}/${req.query.user}`);
         res.setHeader("Content-Type", "image/svg+xml");
         res.setHeader("Cache-Control", `public, max-age=7200`);
-        const level = data.ranks.overall.name.split('')[0];
+        const levelName = data.ranks.overall.name;
+        const level = levelName.includes("dan") ? "dan" : levelName.split('')[0];
         let cardTemplate = fs.readFileSync(path.join(__dirname + '../../templates/codewarscard.svg'), 'utf8');
         if(req.query.top_languages){
           cardTemplate = setIcons(cardTemplate,data.ranks.languages);
         }
         res.send(cardTemplate
           .replace('{name}',req.query.name ? data.name : data.username)
-          .replace('{rankName}',data.ranks.overall.name)
+          .replace('{rankName}',levelName)
           .replace('{clan}',data.clan)
           .replace('{leaderboardPosition}',data.leaderboardPosition)
           .replace('{honor}',data.honor)
