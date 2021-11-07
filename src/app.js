@@ -1,11 +1,10 @@
-const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-const rateLimit = require("express-rate-limit");
-require('dotenv').config();
-const middlewares = require('./middlewares');
-const logger = require('./logger');
-const codewars = require('./routes/codewars');
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import rateLimit from 'express-rate-limit';
+import { notFound, errorHandler } from './middlewares.js';
+import logger from './logger.js';
+import codewars from './routes/codewars.js';
 
 const app = express();
 app.use(helmet());
@@ -27,7 +26,7 @@ app.get('/', async(req, res) => {
 
 app.use('/codewars', codewars);
 
-app.use(middlewares.notFound);
-app.use(middlewares.errorHandler);
+app.use(notFound);
+app.use(errorHandler);
 
-module.exports = app;
+export default app;

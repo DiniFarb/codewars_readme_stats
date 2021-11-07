@@ -1,3 +1,3 @@
-const simpleIcons = require('simple-icons');
-ic = simpleIcons.Get("apachegroovy").svg;
+import { Get } from 'simple-icons';
+ic = Get("apachegroovy").svg;
 console.log(ic);

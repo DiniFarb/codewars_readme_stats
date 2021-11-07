@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Display your codewars stats on your github profile",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"

@@ -1,4 +1,5 @@
-const { createLogger, transports, format } = require('winston');
+import pkg from 'winston';
+const { createLogger, transports, format } = pkg;
 
 const logger = createLogger({
     format: format.combine(
@@ -6,14 +7,7 @@ const logger = createLogger({
         format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
     ),
     transports: [
-        new transports.File({
-            filename: './logs/ServerLog.log',
-            json: false,
-            maxsize: 5242880,
-            maxFiles: 1,
-        }),
         new transports.Console(),
     ]
 });
-
-module.exports = logger;
+export default logger

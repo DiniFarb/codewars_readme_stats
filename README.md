@@ -39,5 +39,6 @@ TODO
 - [X] release to github.r2v.ch which points to heroku
 - [ ] configure pull request pipline in heroku
 - [ ] create tests for icons
+- [x] migrate to ES6 module
 
 ### Many Thanks to the guys of https://github.com/anuraghazra/github-readme-stats where I got the idea to do the same for codewars :)
