@@ -57,8 +57,8 @@ You can add the follwing query parameters to the base url: `https://github.r2v.c
 ## Hosting
 The project is currently hostet on heroku and free to use for every one :) 
 
-### As Image
-Optional to the svg ref ist is possible to load the card as image ref
+## As Image
+Optional to the svg ref it is possible to load the card as image:
 
 ```html
 <a href="">
