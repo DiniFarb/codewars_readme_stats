@@ -52,11 +52,16 @@ You can add the follwing query parameters to the base url: `https://github.r2v.c
 
 ![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&stroke=%23BB432C)
 
-- - - -
+----
+## Link
+The pattern for linking svg content `![name](link to svg)` can be wrappt in `[]()` markdown option to link somewhere when clicked.
 
-## Hosting
-The project is currently hostet on heroku and free to use for every one :) 
+```md
+[![Codewars](https://github.r2v.ch/codewars?user=USERNAME)(LINK)]
+```
 
+[![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+----
 ## As Image
 Optional to the svg ref it is possible to load the card as image:
 
@@ -65,6 +70,9 @@ Optional to the svg ref it is possible to load the card as image:
   <img align="center" src="https://github.r2v.ch/codewars?user=USERNAME" />
 </a>
 ```
+
+## Hosting
+The project is currently hostet on heroku and free to use for everyone :) 
 
 ### Additional
 Many Thanks to the guys of https://github.com/anuraghazra/github-readme-stats where I got the idea to do the same for codewars :)
