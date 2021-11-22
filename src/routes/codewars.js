@@ -72,6 +72,7 @@ router.get("/", async (req, res, next) => {
         .replace("{honor}", data.honor)
         .replace("{score}", data.ranks.overall.score)
         .replace("{totalCompleted}", data.codeChallenges.totalCompleted)
+        .replace("{strokeColor}", req.query.stroke ? `stroke: ${req.query.stroke};` : "")
         .replace(/{rankColor}/g, LevelColors[level])
     );
   } catch (err) {

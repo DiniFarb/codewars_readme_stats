@@ -1,44 +1,72 @@
-# codewars stats 
+<h1 align="center">codewars readme stats</h1>
 
-Display your codewars stats in your github readme.
+Display your codewars stats at your [github readme profile](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)
 
-Example:
+## Basic Example
 
-[![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true)](https://www.codewars.com/users/andreasvogt89)
-
-Just replace all `username` values in the string below by your codewars username and place it in your github profile readme
-```
-[![Codewars](https://github.r2v.ch/codewars?user=username)](https://www.codewars.com/users/username)
+Just replace `USERNAME` in the string below by your codewars username and copy-paste it in your github profile readme
+```md
+[![Codewars](https://github.r2v.ch/codewars?user=USERNAME)]
 ```
 
-or if you want your codewars `name` instead of `username` displayed, use the parameter `name=true` like:
-```
-[![Codewars](https://github.r2v.ch/codewars?user=username&name=true)](https://www.codewars.com/users/username)
+![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89)
+
+---
+## Query Parameters
+
+You can add the follwing query parameters to the base url: `https://github.r2v.ch/codewars`
+
+|parameter|requierd|describtion|example|
+|-----|-----|-----|-----|
+| `username` | yes |used to get the user info from codewars|`username=foo`| 
+| `name` |no|if set to `true` the codewarse name (nickname) is used on the card instead of the username |`name=true` |
+| `top_languages` |no|extens the crad with 3 icons of the top trained languages |`top_languages=true`|
+| `stroke` |no|sets a border with the passed in color around the card |`stroke=black`<br>`stroke=rgb(0,0,0)`<br> `stroke=%23000000`|
+
+
+## Examples
+
+### Nickame
+
+```md
+![Codewars](https://github.r2v.ch/codewars?user=USERNAME&name=true)
 ```
 
-Additional you can place the parameter `top_languages=true` if you want to display your top 3 languages as icons like:
+![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true)
 
+### Top trained languages
+
+```md
+![Codewars](https://github.r2v.ch/codewars?user=USERNAME&top_languages=true)
 ```
-[![Codewars](https://github.r2v.ch/codewars?user=username&name=true&top_languages=true)](https://www.codewars.com/users/username)
+
+![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&top_languages=true)
+
+### Border
+
+```md
+![Codewars](https://github.r2v.ch/codewars?user=USERNAME&stroke=%23BB432C)
 ```
-This would look like:
+> :warning: **Important:** 
+> You can pass in the usual css color types just make sure to use `%23` instead of `#` while using hex code because of the [url encoding](https://www.w3schools.com/tags/ref_urlencode.asp)
 
-[![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true&top_languages=true)](https://www.codewars.com/users/andreasvogt89)
-
+![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&stroke=%23BB432C)
 
 - - - -
 
-TODO
-- [X] redirect base "github.r2v.ch" to this repo
-- [ ] add parameter for card costumization
-    - [x] display top 3 languages as icon
-    - [ ] improve icons (not all languages are supported yet)
-- [x] check security 
-    - [x] allow only few request per minute for every source
-    - [x] use heroku and hostpoint for hosting the app  
-- [X] release to github.r2v.ch which points to heroku
-- [ ] configure pull request pipline in heroku
-- [ ] create tests for icons
-- [x] migrate to ES6 module
+## Hosting
+The project is currently hostet on heroku and free to use for every one :) 
 
-### Many Thanks to the guys of https://github.com/anuraghazra/github-readme-stats where I got the idea to do the same for codewars :)
+### As Image
+Optional to the svg ref ist is possible to load the card as image ref
+
+```html
+<a href="">
+  <img align="center" src="https://github.r2v.ch/codewars?user=USERNAME" />
+</a>
+```
+
+### Additional
+Many Thanks to the guys of https://github.com/anuraghazra/github-readme-stats where I got the idea to do the same for codewars :)
+
+

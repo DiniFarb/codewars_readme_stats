@@ -1,10 +1,15 @@
 <svg width="500" height="195" viewBox="0 0 500 195" fill="none" xmlns="http://www.w3.org/2000/svg">
 <style>
-    .header {
-      font: 600 20px 'Segoe UI', Ubuntu, Sans-Serif;
-      fill: #F1F5F3;
-      animation: fadeInAnimation 0.8s ease-in-out forwards;
-      }
+      .header {
+        font: 600 20px 'Segoe UI', Ubuntu, Sans-Serif;
+        fill: #F1F5F3;
+        animation: fadeInAnimation 0.8s ease-in-out forwards;
+        }
+      .card {
+        stroke-width: 2;
+        fill: #262729;
+        {strokeColor}
+      }  
       .stat {
       font: 600 16px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #BB432C;
       }
@@ -59,7 +64,7 @@
       }
     }
 </style>
-<rect data-testid="card-bg" x="0.5" y="0.5" rx="4.5" height="99%" stroke="#BB432C" width="499" fill="#262729" stroke-opacity="0"></rect>
+<rect data-testid="card-bg" x="0.5" y="0.5" rx="4.5" class="card" height="99%"  width="499"></rect>
   <g transform="translate(25, 35)">
       <g transform="translate(0, 0)">
         <text x="0" y="0" class="header">{name}'s Codewars Stats</text>
