@@ -61,6 +61,14 @@ You can add the follwing query params to the base url: `https://github.r2v.ch/co
 
 ![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&stroke=%23BB432C)
 
+### All together
+
+```md
+![Codewars](https://github.r2v.ch/codewars?user=USERNAME&name=true&top_languages=true&stroke=%23BB432C)
+```
+
+![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true&top_languages=true&stroke=%23BB432C)
+
 ----
 ## Link to when clicked
 The pattern for linking svg content `![name](link to svg)` can be wrappt in `[]()` markdown option to link somewhere when clicked.
@@ -73,12 +81,14 @@ The pattern for linking svg content `![name](link to svg)` can be wrappt in `[](
 ----
 
 ## As Image
-Optional to the svg ref markdown style it is possible to load the card as image:
+Optional to the svg ref markdown style it is possible to load the card as image. This gives you the possibility to center it as example.
 
 ```html
-<a href="LINK TO: WHEN CLICKED">
-  <img align="center" src="https://github.r2v.ch/codewars?user=USERNAME" />
-</a>
+<p align="center" >
+    <a href="LINK TO: WHEN CLICKED">
+      <img src="https://github.r2v.ch/codewars?user=USERNAME" />
+    </a>
+</p>    
 ```
 
 
