@@ -1,27 +1,27 @@
 export default {
   shell: {
-    name: "windowsterminal",
-    display_name: "Shell",
+    name: 'windowsterminal',
+    display_name: 'Shell',
   },
   fsharp: {
-    name: "sharp",
-    display_name: "F#",
+    name: 'sharp',
+    display_name: 'F#',
   },
   cpp: {
-    name: "cplusplus",
-    display_name: "C++",
+    name: 'cplusplus',
+    display_name: 'C++',
   },
-/*   sql: {
+  /*   sql: {
     name: "cplusplus",
     display_name: "C++",
   }, */
-/*   objc: {
+  /*   objc: {
     name: "",
     display_name: "",
   }, */
   groovy: {
-    name: "apachegroovy",
-    display_name: "groovy",
+    name: 'apachegroovy',
+    display_name: 'groovy',
   },
   /* vb: {
     name: "",

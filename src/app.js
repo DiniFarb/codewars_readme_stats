@@ -12,16 +12,16 @@ app.use(cors());
 app.set('trust proxy', 1);
 
 const limiter = rateLimit({
-    windowMs: 60 * 1000,
-    max: 20
+  windowMs: 60 * 1000,
+  max: 20
 });
 
 app.use(limiter);
 
 app.get('/', async(req, res) => {
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-    logger.info(`redirect: ${ip}`);
-    res.redirect('https://github.com/andreasvogt89/codewars_api');
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  logger.info(`redirect: ${ip}`);
+  res.redirect('https://github.com/andreasvogt89/codewars_api');
 });
 
 app.use('/codewars', codewars);
