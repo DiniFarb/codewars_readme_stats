@@ -23,7 +23,6 @@ app.get('/', async(req, res) => {
   logger.info(`redirect: ${ip}`);
   res.redirect('https://github.com/andreasvogt89/codewars_api');
 });
-
 app.use('/codewars', codewars);
 
 app.use(notFound);

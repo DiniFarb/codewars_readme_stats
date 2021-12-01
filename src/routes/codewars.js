@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import sIcons from 'simple-icons';
 import specialIcons from '../utils/icon-mapper.js';
-const router = express();
+const router = express.Router();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const LevelColors = {
@@ -49,9 +49,9 @@ let no_icon_found_template = (iconName) => `
 router.get('/', async (req, res, next) => {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   logger.info(`crad request: ${ip}`);
-  const codewars_Url = 'https://www.codewars.com/api/v1/users';
   try {
-    const { data } = await axios.get(`${codewars_Url}/${req.query.user}`);
+    if(!req.query.user) throw Error('Missing Query param => [user={yourname}]');
+    const { data } = await getUser(req.query.user);
     res.setHeader('Content-Type', 'image/svg+xml');
     res.setHeader('Cache-Control', 'public, max-age=7200');
     const levelName = data.ranks.overall.name;
@@ -79,6 +79,15 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
+
+async function getUser(username){
+  const codewars_Url = 'https://www.codewars.com/api/v1/users';
+  try{
+    return await axios.get(`${codewars_Url}/${username}`);
+  } catch(err){
+    throw new Error(`codewars API failure: ${err}`);
+  }
+}
 
 function setIcons(template, languages) {
   try {
