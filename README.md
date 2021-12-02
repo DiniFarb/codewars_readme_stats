@@ -1,14 +1,5 @@
 <h1 align="center">codewars readme stats</h1>
 
-<p align="center">
-    <a href="">
-      <img alt="Service" src="https://img.shields.io/website?down_message=down&label=Service&style=for-the-badge&up_color=green&up_message=online&url=https%3A%2F%2Fgithub.r2v.ch%2Fcodewars" />
-    </a>
-    <a href="">
-      <img src="https://img.shields.io/snyk/vulnerabilities/github/andreasvogt89/codewars_readme_stats?style=for-the-badge" />
-    </a>
-</p>
-
 Display your codewars stats at your [github readme profile](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)
 
 ## Basic Example
