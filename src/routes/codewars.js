@@ -53,7 +53,7 @@ router.get('/', async (req, res, next) => {
     if(!req.query.user) throw Error('Missing Query param => [user={yourname}]');
     const { data } = await getUser(req.query.user);
     res.setHeader('Content-Type', 'image/svg+xml');
-    res.setHeader('Cache-Control', 'public, max-age=7200');
+    res.setHeader('Cache-Control', 'public, max-age=no-cache');
     const levelName = data.ranks.overall.name;
     const level = levelName.includes('dan') ? 'dan' : levelName.split('')[0];
     let cardTemplate = fs.readFileSync(

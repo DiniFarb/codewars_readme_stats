@@ -13,7 +13,7 @@ Display your codewars stats at your [github readme profile](https://docs.github.
 
 ## Basic Example
 
-Just replace `USERNAME` in the string below by your codewars username and copy-paste it in your github profile readme
+Just replace `USERNAME` in the string below by your codewars username and copy-paste it to your github profile readme
 ```md
 ![Codewars](https://github.r2v.ch/codewars?user=USERNAME)
 ```
@@ -23,7 +23,7 @@ Just replace `USERNAME` in the string below by your codewars username and copy-p
 ---
 ## Query Params
 
-You can add the follwing query params to the base url: `https://github.r2v.ch/codewars`
+You can add the following query params to the base url: `https://github.r2v.ch/codewars`
 
 |parameter|requierd|describtion|example|
 |-----|-----|-----|-----|
@@ -35,7 +35,7 @@ You can add the follwing query params to the base url: `https://github.r2v.ch/co
 
 ## Examples
 
-### Display nickame
+### Display nickname
 
 ```md
 ![Codewars](https://github.r2v.ch/codewars?user=USERNAME&name=true)
@@ -71,7 +71,7 @@ You can add the follwing query params to the base url: `https://github.r2v.ch/co
 
 ----
 ## Link to when clicked
-The pattern for linking svg content `![name](link to svg)` can be wrappt in `[]()` markdown option to link somewhere when clicked.
+The pattern for linking svg content `![name](link to svg)` can be wrapped in `[]()` markdown option to link somewhere when clicked.
 
 ```md
 [![Codewars](https://github.r2v.ch/codewars?user=USERNAME)(LINK)]
@@ -93,7 +93,7 @@ Optional to the svg ref markdown style it is possible to load the card as image.
 
 
 ## Hosting
-The project is currently hostet on heroku and free to use for everyone :) 
+The project is currently hosted on heroku and free to use for everyone :) 
 
 ## Additional
 Many Thanks to the guys of https://github.com/anuraghazra/github-readme-stats where I got the idea to do the same for codewars :)

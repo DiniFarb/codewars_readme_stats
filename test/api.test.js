@@ -56,3 +56,21 @@ describe('GET /codewars with known user', function() {
       .expect(200,done);
   });
 });
+
+describe('GET /codewars with params', function() {
+  it('responds with 200 and svg', function(done) {
+    request(app)
+      .get('/codewars?user=andreasvogt89&name=true&top_languages=true')
+      .expect('Content-Type', 'image/svg+xml; charset=utf-8')
+      .expect(200,done);
+  });
+});
+
+describe('GET /codewars with params', function() {
+  it('responds with 200 and svg', function(done) {
+    request(app)
+      .get('/codewars?user=andreasvogt89&name=true&top_languages=true&stroke=%23BB432C')
+      .expect('Content-Type', 'image/svg+xml; charset=utf-8')
+      .expect(200,done);
+  });
+});
