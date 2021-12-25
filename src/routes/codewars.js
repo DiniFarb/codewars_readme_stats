@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import sIcons from 'simple-icons';
 import specialIcons from '../utils/icon-mapper.js';
+import { themes } from '../templates/themes.js';
 const router = express.Router();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -48,7 +49,7 @@ let no_icon_found_template = (iconName) => `
 
 router.get('/', async (req, res, next) => {
   const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-  logger.info(`crad request: ${ip}`);
+  logger.info(`card request: ${ip}`);
   try {
     if(!req.query.user) throw Error('Missing Query param => [user={yourname}]');
     const { data } = await getUser(req.query.user);
@@ -63,6 +64,7 @@ router.get('/', async (req, res, next) => {
     if (req.query.top_languages) {
       cardTemplate = setIcons(cardTemplate, data.ranks.languages);
     }
+    let theme = req.query.theme ? themes[req.query.theme] : themes.default;
     res.send(
       cardTemplate
         .replace('{name}', req.query.name ? data.name : data.username)
@@ -73,6 +75,11 @@ router.get('/', async (req, res, next) => {
         .replace('{score}', data.ranks.overall.score)
         .replace('{totalCompleted}', data.codeChallenges.totalCompleted)
         .replace('{strokeColor}', req.query.stroke ? `stroke: ${req.query.stroke};` : '')
+        .replace('{cardColor}',theme.card)
+        .replace('{headlineFontColor}',theme.headline_font)
+        .replace('{bodyFontColor}',theme.body_font)
+        .replace('{badgeColor}',theme.rank_badge)
+        .replace(/{iconColor}/g,theme.icon)
         .replace(/{rankColor}/g, LevelColors[level])
     );
   } catch (err) {
@@ -121,7 +128,7 @@ function setIcons(template, languages) {
             .replace('{svg}', ic)
             .replace(
               'viewBox="0 0 24 24"',
-              'viewBox="0 0 150 150" class="icons" fill="#6795DE"'
+              'viewBox="0 0 150 150" class="icons" fill="{iconColor}"'
             );
       });
     return setHeight(template).replace(
