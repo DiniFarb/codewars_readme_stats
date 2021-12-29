@@ -22,7 +22,7 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 | [username](https://github.com/andreasvogt89/codewars_readme_stats#Display-nickname)|no|if set to `true` the codewars `name` (nickname) is used on the card instead of the username |`name=true` |
 | [top_languages](https://github.com/andreasvogt89/codewars_readme_stats#Top-trained-languages-icons) |no|extens the crad with 3 icons of the top trained languages |`top_languages=true`|
 | [stroke](https://github.com/andreasvogt89/codewars_readme_stats#Set-card-border) |no|sets a border with the passed in color around the card |`stroke=black`<br>`stroke=rgb(0,0,0)`<br> `stroke=%23000000`|
-| [theme](https://github.com/andreasvogt89/codewars_readme_stats#Themes) |no| **new feature!** sets a theme for the card |`theme=light`<br>`theme=dark`|
+| [theme](https://github.com/andreasvogt89/codewars_readme_stats#themes-new-feature) |no| **new feature!** sets a theme for the card |`theme=light`<br>`theme=dark`|
 
 ## Examples
 
