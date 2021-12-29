@@ -69,7 +69,7 @@ The colors are set within the `themes.js` file. As starting point I've added the
 >I am happy to take suggestions and wishes :) You can even create pull requests for that ;)
 
 ```md
-![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true&theme=light)
+![Codewars](https://github.r2v.ch/codewars?user=USERNAME&name=true&theme=light)
 ```
 
 ![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true&theme=light)
