@@ -7,7 +7,10 @@ import sIcons from 'simple-icons';
 import specialIcons from '../utils/icon-mapper.js';
 import { themes } from '../templates/themes.js';
 const router = express.Router();
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const LevelColors = {
   1: '#866CC7',
