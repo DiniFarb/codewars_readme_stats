@@ -1,6 +1,9 @@
 package codewars
 
 import (
+	"io/ioutil"
+	"log"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -11,8 +14,7 @@ func GetTopLanguagesTemplate(icons string) (template string) {
 	<g transform="translate(150, 190)">
 		<g class="stats" style="animation-delay: 1050ms">      
 			<text class="stat bold"  y="12.5">Top trained languages</text>
-			<text class="stat" x="170" y="12.5">
-			</text>
+			<text class="stat" x="170" y="12.5"></text>
 			{icons}
 		</g>
 	</g>`
@@ -21,7 +23,7 @@ func GetTopLanguagesTemplate(icons string) (template string) {
 
 func GetIconTemplate(x string) (s string) {
 	s = `
-	<g transform="translate(${x},20)">
+	<g transform="translate({x},20)">
 	  {svg}
 	</g>`
 	return strings.Replace(s, "{x}", x, 1)
@@ -29,7 +31,7 @@ func GetIconTemplate(x string) (s string) {
 
 func GetIconNotFoundSVG(iconName string) (s string) {
 	s = `
-	<svg viewBox="0 0 150 150" class="fail-icon-text">
+	<svg viewBox="0 0 150 150" class="fail-icon-text" fill="{iconColor}">
 		<text x="10" y="10" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">
 		{iconName}
 		</text>
@@ -38,35 +40,30 @@ func GetIconNotFoundSVG(iconName string) (s string) {
 }
 
 func SetIcons(template string, languages Languages) (t string) {
-	scores := []int{}
-	for _, v := range languages {
-		scores = append(scores, v.Score)
-	}
-	sort.Sort(sort.Reverse(sort.IntSlice(scores)))
-	count := 0
-	langs := []string{}
-	for k, v := range languages {
-		if len(langs) < 3 {
-			if ArrContainsInt(v.Score, scores) {
-				langs = append(langs, k)
-			}
-		}
-		count++
-	}
-	i := 0
 	x := -108
 	ic := ""
+	i := 0
+	keys := make([]string, 0, len(languages))
+	for key := range languages {
+		keys = append(keys, key)
+	}
+	sort.SliceStable(keys, func(i, j int) bool {
+		return languages[keys[i]].Score < languages[keys[j]].Score
+	})
 	for k, _ := range languages {
 		if i > 0 {
 			x += 60
 		}
-		ic = GetIconTemplate(strconv.Itoa(x))
-		icon := GetIcon(k)
-		if icon == "" {
-			ic = ic + strings.Replace(ic, "{svg}", GetIconNotFoundSVG(k), 1)
+		if i > 2 {
+			continue
+		}
+		icon, err := GetIcon(k)
+		if err != nil {
+			log.Printf("Could not get icon svg for: %v => %v", k, err)
+			ic = ic + strings.Replace(GetIconTemplate(strconv.Itoa(x)), "{svg}", GetIconNotFoundSVG(k), 1)
 		} else {
-			ic = ic + strings.Replace(ic, "{svg}", icon, 1)
-			ic = ic + strings.Replace(ic, `viewBox="0 0 24 24"`, `viewBox="0 0 150 150" class="icons" fill="{iconColor}"`, 1)
+			iconstring := strings.Replace(GetIconTemplate(strconv.Itoa(x)), "{svg}", icon, 1)
+			ic = ic + strings.Replace(iconstring, `viewBox="0 0 24 24"`, `viewBox="0 0 150 150" class="icons" fill="{iconColor}"`, 1)
 		}
 		i++
 	}
@@ -76,17 +73,15 @@ func SetIcons(template string, languages Languages) (t string) {
 	return strings.Replace(template, "{icons}", GetTopLanguagesTemplate(ic), 1)
 }
 
-func GetIcon(language string) (icon string) {
-	return ""
-}
-
-func ArrContainsInt(si int, arr []int) (r bool) {
-	r = false
-	for _, v := range arr {
-		if v == si {
-			r = true
-			return
-		}
+func GetIcon(language string) (icon string, err error) {
+	dir, err := os.Getwd()
+	if err != nil {
+		return
 	}
+	content, err := ioutil.ReadFile(dir + "/codewars/templates/icons/" + language + ".svg")
+	if err != nil {
+		return
+	}
+	icon = string(content)
 	return
 }

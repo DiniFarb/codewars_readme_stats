@@ -61,9 +61,9 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 ![Codewars](https://github.r2v.ch/codewars?user=andreasvogt89&name=true&top_languages=true&stroke=%23BB432C)
 
 ### Themes (**new feature**)
-I am currently implementing a theme feature. This allows you to change de default codewars like theme. You can find a example of all themes [here](https://github.com/andreasvogt89/codewars_readme_stats/blob/master/src/templates/themes.md). 
+I am currently implementing a theme feature. This allows you to change de default codewars like theme. You can find a example of all themes [here](https://github.com/andreasvogt89/codewars_readme_stats/blob/master/codewars/themes.md). 
 
-If you wish for other themes I am happy to take a pull request, just place your desired color set in the [themes.js](https://github.com/andreasvogt89/codewars_readme_stats/blob/master/src/templates/themes.js) file. Please also add it in the example file.
+If you wish for other themes I am happy to take a pull request, just place your desired color set in the [themes.js](https://github.com/andreasvogt89/codewars_readme_stats/blob/master/codewars/themes.go) file. Please also add it in the example file.
 
 ```md
 ![Codewars](https://github.r2v.ch/codewars?user=USERNAME&name=true&theme=light)
@@ -92,13 +92,13 @@ Optional to the svg ref markdown style it is possible to load the card as image.
 </p>    
 ```
 
-
 ## Hosting
-The project is currently hosted on heroku and free to use for everyone :) 
+The project is currently hosted on heroku and free to use for everyone :)
 
 ## Additional
 - Many Thanks to the guys of https://github.com/anuraghazra/github-readme-stats where I got the idea to do the same for codewars :)
 
-- If you have any questions don't hesitate to ask or open a issue! 
+- Icons are from https://simpleicons.org/
 
+- If you have any questions don't hesitate to ask or open a issue! 
 

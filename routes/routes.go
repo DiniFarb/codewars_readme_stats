@@ -24,8 +24,8 @@ func GET_CodewarsCard(c *gin.Context) {
 	c.Writer.Header().Set("Cache-Control", "public, max-age=no-cache")
 	data, err := codewars.Construct(c.Request.URL.Query(), user)
 	if err != nil {
-		log.Println("Cunstruct template failed with: ", err)
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Internal Server Error"})
+		log.Println("Cunstruct codewars card failed with: ", err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Internal server error while constructing codewars card"})
 		return
 	}
 	c.String(http.StatusOK, data)
