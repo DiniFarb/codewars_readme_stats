@@ -3,17 +3,12 @@ package codewars
 import (
 	"io/ioutil"
 	"net/url"
-	"os"
 	"strconv"
 	"strings"
 )
 
 func Construct(settings url.Values, user Userdata) (template string, err error) {
-	dir, err := os.Getwd()
-	if err != nil {
-		return
-	}
-	content, err := ioutil.ReadFile(dir + "./codewars/templates/codewarscard.svg")
+	content, err := ioutil.ReadFile("./codewars/templates/codewarscard.svg")
 	if err != nil {
 		return
 	}
