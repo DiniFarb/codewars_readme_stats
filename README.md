@@ -63,7 +63,7 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 ### Themes (**new feature**)
 I am currently implementing a theme feature. This allows you to change de default codewars like theme. You can find a example of all themes [here](https://github.com/andreasvogt89/codewars_readme_stats/blob/master/codewars/themes.md). 
 
-If you wish for other themes I am happy to take a pull request, just place your desired color set in the [themes.js](https://github.com/andreasvogt89/codewars_readme_stats/blob/master/codewars/themes.go) file. Please also add it in the example file.
+If you wish for other themes I am happy to take a pull request, just place your desired color set in the [themes.go](https://github.com/andreasvogt89/codewars_readme_stats/blob/master/codewars/themes.go) file. Please also add it in the example file.
 
 ```md
 ![Codewars](https://github.r2v.ch/codewars?user=USERNAME&name=true&theme=light)
@@ -92,8 +92,13 @@ Optional to the svg ref markdown style it is possible to load the card as image.
 </p>    
 ```
 
-## Hosting
-The project is currently hosted on heroku and free to use for everyone :)
+## Self Hosting
+You can also serve it by yourself. Clone the repo and use the Dockerfile or just download it directly from Dockerhub.
+
+Try it out with:
+```
+docker run -it -p 3000:3000 dinifarb/codewars
+``` 
 
 ## Additional
 - Many Thanks to the guys of https://github.com/anuraghazra/github-readme-stats where I got the idea to do the same for codewars :)
