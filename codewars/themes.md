@@ -1,5 +1,7 @@
 # Example of all themes
 
+Cache Control is set for 24h on the cards below, if not all cards are loaded just refresh the page a few times :)
+
 ## Basic
 | | | |
 |-----|-----|-----|
