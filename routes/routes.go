@@ -21,7 +21,12 @@ func GET_CodewarsCard(c *gin.Context) {
 		return
 	}
 	c.Writer.Header().Set("Content-Type", "image/svg+xml")
-	c.Writer.Header().Set("Cache-Control", "public, max-age=no-cache")
+	cache := c.Request.URL.Query().Get("cache_control")
+	if cache == "" {
+		c.Writer.Header().Set("Cache-Control", "public, max-age=no-cache")
+	} else {
+		c.Writer.Header().Set("Cache-Control", "public, max-age="+cache)
+	}
 	data, err := codewars.Construct(c.Request.URL.Query(), user)
 	if err != nil {
 		log.Println("Cunstruct codewars card failed with: ", err)
