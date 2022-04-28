@@ -37,6 +37,13 @@ var Themes = map[string]Theme{
 		Icon:          "#00ffff",
 		Rank_badge:    "#181919",
 	},
+	"midnight_purple": {
+		Card:          "#000",
+		Headline_font: "#9745f5",
+		Body_font:     "#fff",
+		Icon:          "#9f4bff",
+		Rank_badge:    "#181919",
+	},
 	"purple_dark": {
 		Card:          "#2d2b55",
 		Headline_font: "#c792ea",
