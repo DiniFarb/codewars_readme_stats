@@ -1,34 +1,30 @@
-package test
+package icontests
 
 import (
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"strings"
 	"testing"
-
-	"github.com/magiconair/properties/assert"
 )
 
 func TestLanguagesForIcons(t *testing.T) {
 	resp, err := http.Get("https://www.codewars.com/kata/search/")
 	if err != nil {
-		log.Println("Could not get data from codewars: ", err)
+		t.Error("TestLanguagesForIcons() failed with error:", err)
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Println("Could parse data from codewars: ", err)
+		t.Error("TestLanguagesForIcons() failed with error:", err)
 	}
 	bodyString := string(body)
-	log.Println("Skip Language check because could parse data from codewars: ", err)
 	s1 := strings.Split(bodyString, `<option value="my-languages">My Languages</option>`)[1]
 	s2 := strings.Split(s1, `</select>`)[0]
 	cw_languages := strings.Split(s2, `<option value="`)
 	file, err := os.Open("../codewars/templates/icons/")
 	if err != nil {
-		log.Println("Cloud not open icons dir: ", err)
+		t.Error("TestLanguagesForIcons() failed with error:", err)
 	}
 	defer file.Close()
 	names, _ := file.Readdirnames(0)
@@ -44,10 +40,9 @@ func TestLanguagesForIcons(t *testing.T) {
 				}
 			}
 			if !contains {
-				log.Println("No icon for: ", lang)
+				t.Error("No icon for: ", lang)
 				count++
 			}
 		}
 	}
-	assert.Equal(t, count, 0)
 }

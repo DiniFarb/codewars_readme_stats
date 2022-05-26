@@ -27,7 +27,7 @@ func GET_CodewarsCard(c *gin.Context) {
 	} else {
 		c.Writer.Header().Set("Cache-Control", "public, max-age="+cache)
 	}
-	data, err := codewars.Construct(c.Request.URL.Query(), user)
+	data, err := codewars.ConstructCard(c.Request.URL.Query(), user)
 	if err != nil {
 		log.Println("Cunstruct codewars card failed with: ", err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Internal server error while constructing codewars card"})
