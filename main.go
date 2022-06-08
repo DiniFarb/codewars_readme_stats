@@ -16,6 +16,7 @@ func main() {
 		c.Redirect(http.StatusTemporaryRedirect, "https://github.com/dinifarb/codewars_readme_stats")
 	})
 	r.GET("/codewars", routes.GET_CodewarsCard)
+	r.GET("/health", routes.Health)
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "3000"

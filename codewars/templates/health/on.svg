@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="122px" height="61px" viewBox="-0.5 -0.5 122 61" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2022-06-08T18:42:45.728Z&quot; agent=&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61 Safari/537.36&quot; etag=&quot;clLc6biKCCzMpA-KsRkK&quot; version=&quot;19.0.3&quot; type=&quot;github&quot;&gt;&lt;diagram id=&quot;n1Nx5h9MISA0NmSMy8VV&quot; name=&quot;Page-1&quot;&gt;rZVbk5sgFIB/jY/pqMREHze37Uyn10xnnxkhShfFIllNfn2P4RB1bXbbmbwk8B1A+M5BPbIu2kdNq/yzYlx6oc9aj2y8MJwHMfx24GRBQIgFmRYMUQ/24swR+kiPgvF6NNAoJY2oxjBVZclTM2JUa9WMhx2UHD+1ohmfgH1K5ZQ+CWZyS+PI7/lHLrLcPTnwMVJQNxhBnVOmmgEiW4+stVLGtop2zWXnznmx83Y3oteNaV6af5nw9Ot8Ztmn2beXn9/9H0mcB3Q3W9pVXqg84oFxs+bkDGh1LBnvFgk8smpyYfi+omkXbSDlwHJTSAzXRqtnvlZS6ctssom28WYOkYOQcsBZxGPWcapTzDo4JSvcD9eGtzcPGlz1QdlxVXCjTzAEJ4QJGseSC5fYb/oEBi4r+SB5C2QUaya7Lt1rhQaa/Q/L8/ctwypQ0vx9w7SubJ0fRNtlZao8SXa7JJkqv/I7OCZR+Mpx+CGaWI6iqWTH7i45/ovkhTSdBwWHGtpe/D4qF5jVl+p7gAHBsmovelwcWln3//WLWwp2ZlezgUkawah560aUquSvMoOISpGV0E0hAxz4qsuPgBfRAwYKwZi8VSD9Jb3TJSLzxCX0jWu0uM8tgm7/HrzEBh8Tsv0D&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs />
+    <g>
+        <rect x="0" y="0" width="120" height="60" rx="30" ry="30" fill="#d5e8d4" stroke="#d5e8d4" pointer-events="all" />
+        <ellipse cx="89.5" cy="30" rx="27.5" ry="27.5" fill="#99ff99" stroke="#99ff99" pointer-events="all" />
+        <rect x="59.5" y="0" width="60" height="60" fill="none" stroke="none" pointer-events="all" />
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 30px; margin-left: 61px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <font style="font-size: 17px;">ON</font>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="90" y="34" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">ON</text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" />
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">Text is not SVG - cannot display</text>
+        </a>
+    </switch>
+</svg>

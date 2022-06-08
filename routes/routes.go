@@ -2,6 +2,7 @@ package routes
 
 import (
 	"andreasvogt/codewars_readme_stats/codewars"
+	"io/ioutil"
 	"log"
 	"net/http"
 
@@ -34,4 +35,13 @@ func GET_CodewarsCard(c *gin.Context) {
 		return
 	}
 	c.String(http.StatusOK, data)
+}
+
+func Health(c *gin.Context) {
+	c.Writer.Header().Set("Content-Type", "image/svg+xml")
+	content, err := ioutil.ReadFile("./codewars/templates/health/on.svg")
+	if err != nil {
+		c.AbortWithError(400, err)
+	}
+	c.String(http.StatusOK, string(content))
 }
