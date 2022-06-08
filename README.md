@@ -2,6 +2,13 @@
 
 Display your codewars stats at your [github readme profile](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)!
 
+<h4 align="center">Service Status </h4>   
+<p align="center">
+   <a href="github.r2v.ch"> 
+      <img src="https://github.r2v.ch/health" alt="Currently down 🙃" />
+    </a>
+</p>
+
 ## Basic Example
 
 Just replace `USERNAME` in the string below by your codewars username and copy-paste it to your github profile readme
