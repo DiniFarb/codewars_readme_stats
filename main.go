@@ -15,12 +15,15 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		c.Redirect(http.StatusTemporaryRedirect, "https://github.com/dinifarb/codewars_readme_stats")
 	})
-	r.GET("/codewars", routes.GET_CodewarsCard)
+	r.GET("/codewars", routes.GetCodewarsCard)
 	r.GET("/health", routes.Health)
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "3000"
 	}
 	log.Println("Start service on port::: ", port)
-	r.Run(":" + port)
+	err := r.Run(":" + port)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

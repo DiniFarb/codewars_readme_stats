@@ -39,8 +39,6 @@ func GetIconNotFoundSVG(iconName string) (s string) {
 }
 
 func SetIcons(template string, languages Languages) (t string) {
-	x := -108
-	ic := ""
 	keys := make([]string, 0, len(languages))
 	for key := range languages {
 		keys = append(keys, key)
@@ -48,6 +46,16 @@ func SetIcons(template string, languages Languages) (t string) {
 	sort.SliceStable(keys, func(i, j int) bool {
 		return languages[keys[i]].Score > languages[keys[j]].Score
 	})
+	var x int
+	switch len(keys) {
+	case 1:
+		x = -48
+	case 2:
+		x = -78
+	default:
+		x = -108
+	}
+	ic := ""
 	for i, k := range keys {
 		if i > 0 {
 			x += 60

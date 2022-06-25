@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GET_CodewarsCard(c *gin.Context) {
+func GetCodewarsCard(c *gin.Context) {
 	username := c.Request.URL.Query().Get("user")
 	if username == "" {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Missing Query param => [user={yourname}]"})

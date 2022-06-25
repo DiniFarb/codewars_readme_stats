@@ -16,7 +16,7 @@ func SetupRouter() *gin.Engine {
 	r.GET("/", func(c *gin.Context) {
 		c.Redirect(http.StatusTemporaryRedirect, "https://github.com/andreasvogt89/codewars_readme_stats")
 	})
-	r.GET("/codewars", routes.GET_CodewarsCard)
+	r.GET("/codewars", routes.GetCodewarsCard)
 	return r
 }
 
