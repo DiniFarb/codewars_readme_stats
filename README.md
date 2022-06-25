@@ -4,10 +4,11 @@ Display your codewars stats at your [github readme profile](https://docs.github.
 
 <h4 align="center">Service Status </h4>   
 <p align="center">
-   <a href="github.r2v.ch"> 
-      <img src="https://github.r2v.ch/health" alt="Currently down 🙃" />
+   <a href="https://github.r2v.ch/"> 
+      <img src="https://github.r2v.ch/health"/ alt="Currently down 🙃">
     </a>
 </p>
+
 
 ## Basic Example
 
