@@ -64,7 +64,7 @@
       }
     }
 </style>
-<rect data-testid="card-bg" x="0.5" y="0.5" rx="4.5" class="card" height="99%"  width="499"></rect>
+<rect data-testid="card-bg" x="0.5" y="0.5" rx="4.5" class="card" height="99%"  width="494"></rect>
   <g transform="translate(25, 35)">
       <g transform="translate(0, 0)">
         <text x="0" y="0" class="header">{name}'s Codewars Stats</text>

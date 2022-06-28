@@ -10,7 +10,7 @@ import (
 
 func GetTopLanguagesTemplate(icons string) (template string) {
 	template = `
-	<g transform="translate(150, 190)">
+	<g transform="translate(170, 195)">
 		<g class="stats" style="animation-delay: 1050ms">      
 			<text class="stat bold"  y="12.5">Top trained languages</text>
 			<text class="stat" x="170" y="12.5"></text>
