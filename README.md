@@ -9,8 +9,6 @@ Display your codewars stats at your [github readme profile](https://docs.github.
     </a>
 </p>
 
->**Service Down**
->I am rebuild my network infra, service will be down for a few hours
 
 ## Basic Example
 
