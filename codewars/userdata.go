@@ -35,15 +35,16 @@ type CodeChallenges struct {
 }
 
 var LevelColors = map[string]string{
-	"1 kyu:": "#866CC7",
-	"2 kyu":  "#866CC7",
-	"3 kyu":  "#3C7EBB",
-	"4 kyu":  "#3C7EBB",
-	"5 kyu":  "#ECB613",
-	"6 kyu":  "#ECB613",
-	"7 kyu":  "#E6E6E6",
-	"8 kyu":  "#E6E6E6",
-	"dan":    "#999999",
+	"1 kyu": "#866CC7",
+	"2 kyu": "#866CC7",
+	"3 kyu": "#3C7EBB",
+	"4 kyu": "#3C7EBB",
+	"5 kyu": "#ECB613",
+	"6 kyu": "#ECB613",
+	"7 kyu": "#E6E6E6",
+	"8 kyu": "#E6E6E6",
+	"1 dan": "#999999",
+	"2 dan": "#999999",
 }
 
 func GetUserData(username string) (userdata Userdata, err error) {

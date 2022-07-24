@@ -17,10 +17,6 @@ func ConstructCard(settings url.Values, user Userdata) (template string, err err
 	if settings.Get("theme") != "" {
 		theme = settings.Get("theme")
 	}
-
-	if strings.Contains(user.Ranks.Overall.Name, "dan") {
-		user.Ranks.Overall.Name = "dan"
-	}
 	if settings.Get("name") == "true" {
 		template = strings.Replace(template, "{name}", user.Name, 1)
 	} else {
