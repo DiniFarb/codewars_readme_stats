@@ -1,11 +1,21 @@
 package codewars
 
 import (
+	"bytes"
+	"fmt"
+	templatePkg "html/template"
 	"io/ioutil"
 	"net/url"
 	"strconv"
 	"strings"
 )
+
+type CardData struct {
+	Theme       Theme
+	ShowStroke  bool
+	StrokeColor string
+	LevelColor  string
+}
 
 func ConstructCard(settings url.Values, user User) (template string, err error) {
 	content, err := ioutil.ReadFile("./codewars/templates/codewarscard.svg")
@@ -13,10 +23,7 @@ func ConstructCard(settings url.Values, user User) (template string, err error) 
 		return
 	}
 	template = string(content)
-	theme := "default"
-	if settings.Get("theme") != "" {
-		theme = settings.Get("theme")
-	}
+
 	if settings.Get("name") == "true" {
 		template = strings.Replace(template, "{name}", user.Name, 1)
 	} else {
@@ -25,22 +32,41 @@ func ConstructCard(settings url.Values, user User) (template string, err error) 
 	if settings.Get("top_languages") == "true" {
 		template = SetIcons(template, user.Ranks.Languages)
 	}
-	stroke := ""
-	if settings.Get("stroke") != "" {
-		stroke = "stroke: " + settings.Get("stroke")
-	}
 	template = strings.Replace(template, "{rankName}", user.Ranks.Overall.Name, 1)
 	template = strings.Replace(template, "{clan}", user.Clan, 1)
 	template = strings.Replace(template, "{leaderboardPosition}", strconv.Itoa(user.LeaderboardPosition), 1)
 	template = strings.Replace(template, "{honor}", strconv.Itoa(user.Honor), 1)
 	template = strings.Replace(template, "{score}", strconv.Itoa(user.Ranks.Overall.Score), 1)
-	template = strings.Replace(template, "{rankColor}", LevelColors[user.Ranks.Overall.Name], -1)
 	template = strings.Replace(template, "{totalCompleted}", strconv.Itoa(user.CodeChallenges.TotalCompleted), 1)
-	template = strings.Replace(template, "{strokeColor}", stroke, 1)
-	template = strings.Replace(template, "{cardColor}", Themes[theme].Card, -1)
-	template = strings.Replace(template, "{headlineFontColor}", Themes[theme].Headline_font, -1)
-	template = strings.Replace(template, "{bodyFontColor}", Themes[theme].Body_font, -1)
-	template = strings.Replace(template, "{badgeColor}", Themes[theme].Rank_badge, -1)
-	template = strings.Replace(template, "{iconColor}", Themes[theme].Icon, -1)
+
+	// using HTML templates
+	templ, err := templatePkg.New("svg").Parse(template)
+	if err != nil {
+		fmt.Printf("error creating template: %v\n", err)
+		return
+	}
+
+	theme := Themes["default"]
+	if settings.Get("theme") != "" {
+		theme = Themes["theme"]
+	}
+
+	data := CardData{
+		Theme:       theme,
+		ShowStroke:  settings.Get("stroke") != "",
+		StrokeColor: settings.Get("stroke"),
+		LevelColor:  LevelColors[user.Ranks.Overall.Name],
+	}
+
+	var out = bytes.NewBuffer([]byte{})
+	err = templ.ExecuteTemplate(out, "svg", &data)
+	if err != nil {
+		fmt.Printf("error ExecuteTemplate: %v\n", err)
+		return
+	}
+
+	template = out.String()
+
+	fmt.Println(template)
 	return
 }
