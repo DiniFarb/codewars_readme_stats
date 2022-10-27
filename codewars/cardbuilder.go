@@ -29,8 +29,11 @@ func ConstructCard(settings url.Values, user User) (template string, err error) 
 	if settings.Get("stroke") != "" {
 		stroke = "stroke: " + settings.Get("stroke")
 	}
+	if settings.Get("hideClan") != "true" {
+		template = SetClan(template, user.Clan)
+	}
+
 	template = strings.Replace(template, "{rankName}", user.Ranks.Overall.Name, 1)
-	template = strings.Replace(template, "{clan}", user.Clan, 1)
 	template = strings.Replace(template, "{leaderboardPosition}", strconv.Itoa(user.LeaderboardPosition), 1)
 	template = strings.Replace(template, "{honor}", strconv.Itoa(user.Honor), 1)
 	template = strings.Replace(template, "{score}", strconv.Itoa(user.Ranks.Overall.Score), 1)
