@@ -1,4 +1,4 @@
-<h1 align="center">codewars readme stats</h1>
+<h1 align="center">Codewars readme stats</h1>
 
 Display your codewars stats at your [github readme profile](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)!
 
@@ -12,7 +12,7 @@ Display your codewars stats at your [github readme profile](https://docs.github.
 
 ## Basic Example
 
-Just replace `USERNAME` in the string below by your codewars username and copy-paste it to your github profile readme
+Just replace `USERNAME` in the string below by your codewars username and copy-paste it to your github profile readme.
 ```md
 ![Codewars](https://github.r2v.ch/codewars?user=USERNAME)
 ```
@@ -20,7 +20,7 @@ Just replace `USERNAME` in the string below by your codewars username and copy-p
 ![Codewars](https://github.r2v.ch/codewars?user=dinifarb)
 
 ---
-## Query Params
+## Query params
 
 You can add the following query params to the base url: `https://github.r2v.ch/codewars`
 
@@ -30,9 +30,9 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 | [name](https://github.com/dinifarb/codewars_readme_stats#Display-nickname)|no|if set to `true` the codewars `name` (nickname) is used on the card instead of the username |`name=true` |
 | [top_languages](https://github.com/dinifarb/codewars_readme_stats#Top-trained-languages-icons) |no|extens the crad with 3 icons of the top trained languages |`top_languages=true`|
 | [stroke](https://github.com/dinifarb/codewars_readme_stats#Set-card-border) |no|sets a border with the passed in color around the card |`stroke=black`<br>`stroke=rgb(0,0,0)`<br> `stroke=%23000000`|
-| [theme](https://github.com/dinifarb/codewars_readme_stats#themes-new-feature) |no| **new feature!** sets a theme for the card |`theme=light`<br>`theme=dark`|
+| [theme](https://github.com/dinifarb/codewars_readme_stats#themes-new-feature) |no| sets a theme for the card |`theme=light`<br>`theme=dark`|
 
-## Examples
+## Examples for all query params
 
 ### Display nickname
 
@@ -60,23 +60,23 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 
 ![Codewars](https://github.r2v.ch/codewars?user=dinifarb&stroke=%23BB432C)
 
-### All together
+### Themes
+This allows you to change de default codewars like theme. You can find a example of all themes [here](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.md). 
 
 ```md
-![Codewars](https://github.r2v.ch/codewars?user=USERNAME&name=true&top_languages=true&stroke=%23BB432C)
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=light)
 ```
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=light)
 
-![Codewars](https://github.r2v.ch/codewars?user=dinifarb&name=true&top_languages=true&stroke=%23BB432C)
+If you wish for other themes I am happy to take a pull request, just place your desired color set in the [themes.go](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.go) and [themes.md](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.md) file and your ready to go for the PR.
 
-### Themes (**new feature**)
-I am currently implementing a theme feature. This allows you to change de default codewars like theme. You can find a example of all themes [here](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.md). 
-
-If you wish for other themes I am happy to take a pull request, just place your desired color set in the [themes.go](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.go) file. Please also add it in the example file.
+### All params together
 
 ```md
-![Codewars](https://github.r2v.ch/codewars?user=USERNAME&name=true&theme=light)
+![Codewars](https://github.r2v.ch/codewars?user=USERNAME&name=true&top_languages=true&stroke=%23b362ff&theme=purple_dark)
 ```
 
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&name=true&top_languages=true&stroke=%23b362ff&theme=purple_dark)
 
 ----
 ## Link to when clicked
@@ -97,21 +97,31 @@ Optional to the svg ref markdown style it is possible to load the card as image.
     <a href="LINK TO: WHEN CLICKED">
       <img src="https://github.r2v.ch/codewars?user=USERNAME" />
     </a>
-</p>    
+</p>
 ```
+<p align="center" >
+    <a href="LINK TO: WHEN CLICKED">
+      <img src="https://github.r2v.ch/codewars?user=dinifarb" />
+    </a>
+</p>
 
-## Self Hosting
-You can also serve it by yourself. Clone the repo and use the Dockerfile or just download it directly from Dockerhub.
+
+## Host it on your own
+In case you want to run this service on your own server you can use the docker image. The image is available on [dockerhub](https://hub.docker.com/r/dinifarb/codewars).
 
 Try it out with:
-```
+
+```bash
 docker run -it -p 3000:3000 dinifarb/codewars
 ``` 
 
+Or just clone this repo and do whatever you want with it.😉
+
 ## Additional
-- Many Thanks to the guys of https://github.com/anuraghazra/github-readme-stats where I got the idea to do the same for codewars :)
+
+- Inspierd by https://github.com/anuraghazra/github-readme-stats
 
 - Icons are from https://simpleicons.org/
 
-- If you have any questions don't hesitate to ask or open a issue! 
+- If you have any questions don't hesitate open a issue! 
 
