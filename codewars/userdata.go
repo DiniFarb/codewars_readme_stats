@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-type Userdata struct {
+type User struct {
 	Username            string         `json:"username"`
 	Name                string         `json:"name"`
 	Honor               int            `json:"honor"`
@@ -47,19 +47,19 @@ var LevelColors = map[string]string{
 	"2 dan": "#999999",
 }
 
-func GetUserData(username string) (userdata Userdata, err error) {
+func (u *User) GetUserData(username string) error {
 	resp, err := http.Get("https://www.codewars.com/api/v1/users/" + username)
 	if err != nil {
-		return
+		return err
 	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return
+		return err
 	}
-	err = json.Unmarshal([]byte(body), &userdata)
+	err = json.Unmarshal([]byte(body), &u)
 	if err != nil {
-		return
+		return err
 	}
-	return
+	return nil
 }

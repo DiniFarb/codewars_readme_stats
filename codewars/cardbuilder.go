@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func ConstructCard(settings url.Values, user Userdata) (template string, err error) {
+func ConstructCard(settings url.Values, user User) (template string, err error) {
 	content, err := ioutil.ReadFile("./codewars/templates/codewarscard.svg")
 	if err != nil {
 		return

@@ -15,7 +15,8 @@ func GetCodewarsCard(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Missing Query param => [user={yourname}]"})
 		return
 	}
-	user, err := codewars.GetUserData(username)
+	var user codewars.User
+	err := user.GetUserData(username)
 	if err != nil {
 		log.Println("Get Userdata failed with: ", err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Could not get Userdata from codewars"})
