@@ -79,7 +79,7 @@ If you wish for other themes I am happy to take a pull request, just place your 
 > :warning: **Important:** 
 > This feature will eventually be expanded in a way to hide other infos like `honor` from the card. Therefore it is not guaranteed that it will stay exact the same.
 
-![Codewars](https://github.r2v.ch/codewars?user=dinifarb&hide_clan)
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&hide_clan=true)
 
 ### All params together
 
