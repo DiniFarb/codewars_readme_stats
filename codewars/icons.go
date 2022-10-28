@@ -30,7 +30,7 @@ func GetIconTemplate(x string) (s string) {
 
 func GetIconNotFoundSVG(iconName string) (s string) {
 	s = `
-	<svg viewBox="0 0 150 150" class="fail-icon-text" fill="{iconColor}">
+	<svg viewBox="0 0 150 150" class="fail-icon-text" fill="{{.Theme.Icon}}">
 		<text x="10" y="10" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">
 		{iconName}
 		</text>
@@ -69,7 +69,7 @@ func SetIcons(template string, languages Languages) (t string) {
 			ic = ic + strings.Replace(GetIconTemplate(strconv.Itoa(x)), "{svg}", GetIconNotFoundSVG(k), 1)
 		} else {
 			iconstring := strings.Replace(GetIconTemplate(strconv.Itoa(x)), "{svg}", icon, 1)
-			ic = ic + strings.Replace(iconstring, `viewBox="0 0 24 24"`, `viewBox="0 0 150 150" class="icons" fill="{iconColor}"`, 1)
+			ic = ic + strings.Replace(iconstring, `viewBox="0 0 24 24"`, `viewBox="0 0 150 150" class="icons" fill="{{.Theme.Icon}}"`, 1)
 		}
 		i++
 	}
