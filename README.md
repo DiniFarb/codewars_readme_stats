@@ -31,6 +31,7 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 | [top_languages](https://github.com/dinifarb/codewars_readme_stats#Top-trained-languages-icons) |no|extens the crad with 3 icons of the top trained languages |`top_languages=true`|
 | [stroke](https://github.com/dinifarb/codewars_readme_stats#Set-card-border) |no|sets a border with the passed in color around the card |`stroke=black`<br>`stroke=rgb(0,0,0)`<br> `stroke=%23000000`|
 | [theme](https://github.com/dinifarb/codewars_readme_stats#themes-new-feature) |no| sets a theme for the card |`theme=light`<br>`theme=dark`|
+| [hide_clan](https://github.com/dinifarb/codewars_readme_stats#hide-clan) |no| removes the clan name from the card |`hinde_clan=true`|
 
 ## Examples for all query params
 
@@ -69,6 +70,16 @@ This allows you to change de default codewars like theme. You can find a example
 ![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=light)
 
 If you wish for other themes I am happy to take a pull request, just place your desired color set in the [themes.go](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.go) and [themes.md](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.md) file and your ready to go for the PR.
+
+### Hide Clan
+
+```md
+![Codewars](https://github.r2v.ch/codewars?user=USERNAME&hide_clan=true)
+```
+> :warning: **Important:** 
+> This feature will eventually be expanded in a way to hide other infos like `honor` from the card. Therefore it is not guaranteed that it will stay exact the same.
+
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&hide_clan)
 
 ### All params together
 
