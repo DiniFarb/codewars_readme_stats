@@ -2,28 +2,30 @@
 <style>
       .header {
         font: 600 20px 'Segoe UI', Ubuntu, Sans-Serif;
-        fill: {headlineFontColor};
+        fill: {{.Theme.Headline_font}};
         animation: fadeInAnimation 0.8s ease-in-out forwards;
         }
       .card {
         stroke-width: 2;
-        fill: {cardColor};
-        {strokeColor}
+        fill: {{.Theme.Card}};
+        {{if .ShowStroke}} 
+        stroke: {{.StrokeColor}}
+        {{end}}
       }  
       .stat {
-      font: 600 16px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: {bodyFontColor}
+      font: 600 16px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: {{.Theme.Body_font}}
       }
       .stats {
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
       }
       .rank-text {
-      fill: {rankColor};
+      fill: {{.LevelColor}};
       font: 600 30px 'Segoe UI', Ubuntu, Sans-Serif;
       animation: scaleInAnimation 0.3s ease-in-out forwards;
       }
       .fail-icon-text {
-        fill: {iconColor};
+        fill: {{.Theme.Icon}};
         font: 600 10px 'Segoe UI', Ubuntu, Sans-Serif;
         animation: scaleInAnimation 0.3s ease-in-out forwards;
         }
@@ -32,8 +34,8 @@
       }
       .bold { font-weight: 700 }
       .rank-hex {
-      stroke: {rankColor};
-      fill: {badgeColor};
+      stroke: {{.LevelColor}};
+      fill: {{.Theme.Rank_badge}};
       stroke-width: 3;
       opacity: 0.8;
       animation: rankAnimation 1s forwards ease-in-out;
