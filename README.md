@@ -31,7 +31,7 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 | [top_languages](https://github.com/dinifarb/codewars_readme_stats#Top-trained-languages-icons) |no|extens the crad with 3 icons of the top trained languages |`top_languages=true`|
 | [stroke](https://github.com/dinifarb/codewars_readme_stats#Set-card-border) |no|sets a border with the passed in color around the card |`stroke=black`<br>`stroke=rgb(0,0,0)`<br> `stroke=%23000000`|
 | [theme](https://github.com/dinifarb/codewars_readme_stats#themes-new-feature) |no| sets a theme for the card |`theme=light`<br>`theme=dark`|
-| [hide_clan](https://github.com/dinifarb/codewars_readme_stats#hide-clan) |no| removes the clan name from the card |`hinde_clan=true`|
+| [hide_clan](https://github.com/dinifarb/codewars_readme_stats#hide-clan) |no| removes the clan name from the card |`hide_clan=true`|
 
 ## Examples for all query params
 
