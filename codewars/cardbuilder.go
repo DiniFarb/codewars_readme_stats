@@ -48,7 +48,7 @@ func ConstructCard(settings url.Values, user User) (template string, err error) 
 
 	theme := Themes["default"]
 	if settings.Get("theme") != "" {
-		theme = Themes["theme"]
+		theme = Themes[settings.Get("theme")]
 	}
 
 	data := CardData{
