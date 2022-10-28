@@ -82,7 +82,7 @@
         </g>
       </g>
     <svg x="0" y="0">
-    {{clan}}
+  {clan}
     <g transform="translate(0, 25)">
       <g class="stats" style="animation-delay: 600ms" transform="translate(25, 0)">
         <text class="stat bold" y="12.5">Position:</text>

@@ -32,7 +32,7 @@ func ConstructCard(settings url.Values, user User) (template string, err error) 
 	if settings.Get("top_languages") == "true" {
 		template = SetIcons(template, user.Ranks.Languages)
 	}
-	if settings.Get("hideClan") != "true" {
+	if settings.Get("hide_clan") != "true" {
 		template = SetClan(template, user.Clan)
 	}
 	template = strings.Replace(template, "{rankName}", user.Ranks.Overall.Name, 1)
@@ -41,7 +41,6 @@ func ConstructCard(settings url.Values, user User) (template string, err error) 
 	template = strings.Replace(template, "{score}", strconv.Itoa(user.Ranks.Overall.Score), 1)
 	template = strings.Replace(template, "{totalCompleted}", strconv.Itoa(user.CodeChallenges.TotalCompleted), 1)
 
-	// using HTML templates
 	templ, err := templatePkg.New("svg").Parse(template)
 	if err != nil {
 		fmt.Printf("error creating template: %v\n", err)
@@ -69,6 +68,5 @@ func ConstructCard(settings url.Values, user User) (template string, err error) 
 
 	template = out.String()
 
-	fmt.Println(template)
 	return
 }
