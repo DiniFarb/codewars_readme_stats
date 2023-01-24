@@ -130,7 +130,7 @@ Or just clone this repo and do whatever you want with it.😉
 
 ## Additional
 
-- Inspierd by https://github.com/anuraghazra/github-readme-stats
+- Inspired by https://github.com/anuraghazra/github-readme-stats
 
 - Icons are from https://simpleicons.org/
 
