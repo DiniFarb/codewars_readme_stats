@@ -47,7 +47,7 @@ var Themes = map[string]Theme{
 	"midnight_blue": {
 		Card:          "#000",
 		Headline_font: "#0079fa",
-		Body_font:     "#fff",
+		Body_font:     "#0079fa",
 		Icon:          "#0079fa",
 		Rank_badge:    "#2100fa",
 	},
