@@ -40,10 +40,10 @@ func ConstructCard(settings url.Values, user User) (string, error) {
 		templateString = SetIcons(templateString, user.Ranks.Languages)
 	}
 
-	themeName := settings.Get("theme")
-	if themeName != "" {
-		data.Theme = Themes[settings.Get("theme")]
-		if strings.HasPrefix(themeName, "gradient") {
+	theme, exists := Themes[settings.Get("theme")]
+	if exists {
+		data.Theme = theme
+		if strings.HasPrefix(settings.Get("theme"), "gradient") {
 			data.Theme.HasGradient = true
 			vals := strings.Split(data.Theme.Card, ",")
 			for i, v := range vals {
