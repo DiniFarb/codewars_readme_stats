@@ -2,7 +2,8 @@ package codewars
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"errors"
+	"io"
 	"net/http"
 )
 
@@ -53,7 +54,10 @@ func (u *User) GetUserData(username string) error {
 		return err
 	}
 	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	if resp.StatusCode != 200 {
+		return errors.New("user not found")
+	}
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return err
 	}

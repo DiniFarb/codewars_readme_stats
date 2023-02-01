@@ -1,8 +1,8 @@
 package codewars
 
 import (
-	"io/ioutil"
 	"log"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -80,7 +80,7 @@ func SetIcons(template string, languages Languages) (t string) {
 }
 
 func GetIcon(language string) (icon string, err error) {
-	content, err := ioutil.ReadFile("./codewars/templates/icons/" + language + ".svg")
+	content, err := os.ReadFile("./codewars/templates/icons/" + language + ".svg")
 	if err != nil {
 		return
 	}

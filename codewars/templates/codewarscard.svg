@@ -2,18 +2,22 @@
 <style>
       .header {
         font: 600 20px 'Segoe UI', Ubuntu, Sans-Serif;
-        fill: {{.Theme.Headline_font}};
+        fill: {{.Theme.HeadlineFont}};
         animation: fadeInAnimation 0.8s ease-in-out forwards;
         }
       .card {
-        stroke-width: 2;
-        fill: {{.Theme.Card}};
+        {{if .Theme.HasGradient }}
+        fill: url(#grad);
+        {{else}} 
+        fill: {{ .Theme.Card }};
+        {{end}}
         {{if .ShowStroke}} 
         stroke: {{.StrokeColor}}
+        stroke-width: 2;
         {{end}}
       }  
       .stat {
-      font: 600 16px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: {{.Theme.Body_font}}
+      font: 600 16px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: {{.Theme.BodyFont}}
       }
       .stats {
       opacity: 0;
@@ -35,7 +39,7 @@
       .bold { font-weight: 700 }
       .rank-hex {
       stroke: {{.LevelColor}};
-      fill: {{.Theme.Rank_badge}};
+      fill: {{.Theme.RankBadge}};
       stroke-width: 3;
       opacity: 0.8;
       animation: rankAnimation 1s forwards ease-in-out;
@@ -66,10 +70,18 @@
       }
     }
 </style>
+{{if .Theme.HasGradient }}
+<defs>
+  <linearGradient id="grad" x1="{{.Theme.GradientValues.X1}}%" y1="{{.Theme.GradientValues.Y1}}%" x2="{{.Theme.GradientValues.X2}}%" y2="{{.Theme.GradientValues.Y2}}%">
+    <stop offset="{{.Theme.GradientValues.OffsetStart}}%" style="stop-color:{{.Theme.GradientValues.StartColor}};stop-opacity:1" />
+    <stop offset="{{.Theme.GradientValues.OffsetStop}}%" style="stop-color:{{.Theme.GradientValues.StopColor}};stop-opacity:1" />
+  </linearGradient>
+</defs>
+{{end}}
 <rect data-testid="card-bg" x="0.5" y="0.5" rx="4.5" class="card" height="99%"  width="494"></rect>
   <g transform="translate(25, 35)">
       <g transform="translate(0, 0)">
-        <text x="0" y="0" class="header">{name}'s Codewars Stats</text>
+        <text x="0" y="0" class="header">{{if .Nickname }}{{ .User.Name }}{{else}}{{ .User.Username }}{{end}}'s Codewars Stats</text>
       </g>
   </g>
   <g transform="translate(0, 55)">
@@ -77,37 +89,44 @@
         <polygon class="rank-hex" points="-60,7.5 -45,-20 35,-20 50,7.5 35,35 -45,35"></polygon>
         <g class="rank-text">
           <text x="0" y="0" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">
-            {rankName}
+            {{ .User.Ranks.Overall.Name }}
           </text>
         </g>
       </g>
     <svg x="0" y="0">
-  {clan}
+      {{if not .HideClan }}
+      <g transform="translate(0, 0)">
+        <g class="stats" style="animation-delay: 450ms" transform="translate(25, 0)">
+        <text class="stat bold" y="12.5">Clan:</text>
+        <text class="stat" x="170" y="12.5">{{ .User.Clan }}</text>
+        </g>
+      </g>
+      {{end}}
     <g transform="translate(0, 25)">
       <g class="stats" style="animation-delay: 600ms" transform="translate(25, 0)">
         <text class="stat bold" y="12.5">Position:</text>
-        <text class="stat" x="170" y="12.5">{leaderboardPosition}
+        <text class="stat" x="170" y="12.5">{{ .User.LeaderboardPosition }}
         </text>
       </g>
     </g>
     <g transform="translate(0, 50)">
       <g class="stats" style="animation-delay: 750ms" transform="translate(25, 0)">
         <text class="stat bold" y="12.5">Honor:</text>
-        <text class="stat" x="170" y="12.5">{honor}
+        <text class="stat" x="170" y="12.5">{{ .User.Honor }}
         </text>
       </g>
     </g>
     <g transform="translate(0, 75)">
       <g class="stats" style="animation-delay: 900ms" transform="translate(25, 0)">
         <text class="stat bold" y="12.5">Score:</text>
-        <text class="stat" x="170" y="12.5">{score}
+        <text class="stat" x="170" y="12.5">{{ .User.Ranks.Overall.Score }}
         </text>
       </g>
     </g>
     <g transform="translate(0, 100)">
       <g class="stats" style="animation-delay: 1050ms" transform="translate(25, 0)">
         <text class="stat bold" y="12.5">Solved Katas:</text>
-        <text class="stat" x="170" y="12.5">{totalCompleted}
+        <text class="stat" x="170" y="12.5">{{ .User.CodeChallenges.TotalCompleted }}
         </text>
       </g>
     </g>

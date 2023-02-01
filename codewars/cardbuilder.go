@@ -3,70 +3,81 @@ package codewars
 import (
 	"bytes"
 	"fmt"
-	templatePkg "html/template"
-	"io/ioutil"
+	"html/template"
 	"net/url"
-	"strconv"
+	"os"
 	"strings"
 )
 
 type CardData struct {
-	Theme       Theme
-	ShowStroke  bool
-	StrokeColor string
-	LevelColor  string
+	Theme        Theme
+	User         User
+	StrokeColor  string
+	LevelColor   string
+	ShowStroke   bool
+	ShowTopLangs bool
+	Nickname     bool
+	HideClan     bool
 }
 
-func ConstructCard(settings url.Values, user User) (template string, err error) {
-	content, err := ioutil.ReadFile("./codewars/templates/codewarscard.svg")
+func ConstructCard(settings url.Values, user User) (string, error) {
+	content, err := os.ReadFile("./codewars/templates/codewarscard.svg")
 	if err != nil {
-		return
+		fmt.Printf("error loading template: %v\n", err)
+		return "", err
 	}
-	template = string(content)
+	templateString := string(content)
+	data := CardData{
+		LevelColor:   LevelColors[user.Ranks.Overall.Name],
+		StrokeColor:  settings.Get("stroke"),
+		ShowStroke:   settings.Get("stroke") != "",
+		Nickname:     settings.Get("name") == "true",
+		ShowTopLangs: settings.Get("top_languages") == "true",
+		HideClan:     settings.Get("hide_clan") == "true",
+		User:         user,
+	}
+	if data.ShowTopLangs {
+		templateString = SetIcons(templateString, user.Ranks.Languages)
+	}
 
-	if settings.Get("name") == "true" {
-		template = strings.Replace(template, "{name}", user.Name, 1)
+	themeName := settings.Get("theme")
+	if themeName != "" {
+		data.Theme = Themes[settings.Get("theme")]
+		if strings.HasPrefix(themeName, "gradient") {
+			data.Theme.HasGradient = true
+			vals := strings.Split(data.Theme.Card, ",")
+			for i, v := range vals {
+				if v == "{LEVEL}" {
+					vals[i] = LevelColors[user.Ranks.Overall.Name]
+				}
+			}
+			g := GradientValues{
+				StartColor:  vals[0],
+				StopColor:   vals[1],
+				X1:          vals[2],
+				X2:          vals[4],
+				Y2:          vals[5],
+				OffsetStart: vals[6],
+				OffsetStop:  vals[7],
+			}
+			data.Theme.GradientValues = g
+		}
 	} else {
-		template = strings.Replace(template, "{name}", user.Username, 1)
+		data.Theme = Themes["default"]
 	}
-	if settings.Get("top_languages") == "true" {
-		template = SetIcons(template, user.Ranks.Languages)
-	}
-	if settings.Get("hide_clan") != "true" {
-		template = SetClan(template, user.Clan)
-	}
-	template = strings.Replace(template, "{rankName}", user.Ranks.Overall.Name, 1)
-	template = strings.Replace(template, "{leaderboardPosition}", strconv.Itoa(user.LeaderboardPosition), 1)
-	template = strings.Replace(template, "{honor}", strconv.Itoa(user.Honor), 1)
-	template = strings.Replace(template, "{score}", strconv.Itoa(user.Ranks.Overall.Score), 1)
-	template = strings.Replace(template, "{totalCompleted}", strconv.Itoa(user.CodeChallenges.TotalCompleted), 1)
 
-	templ, err := templatePkg.New("svg").Parse(template)
+	templ, err := template.New("svg").Parse(templateString)
 	if err != nil {
 		fmt.Printf("error creating template: %v\n", err)
-		return
-	}
-
-	theme := Themes["default"]
-	if settings.Get("theme") != "" {
-		theme = Themes[settings.Get("theme")]
-	}
-
-	data := CardData{
-		Theme:       theme,
-		ShowStroke:  settings.Get("stroke") != "",
-		StrokeColor: settings.Get("stroke"),
-		LevelColor:  LevelColors[user.Ranks.Overall.Name],
+		return "", err
 	}
 
 	var out = bytes.NewBuffer([]byte{})
 	err = templ.ExecuteTemplate(out, "svg", &data)
 	if err != nil {
 		fmt.Printf("error ExecuteTemplate: %v\n", err)
-		return
+		return "", err
 	}
-
-	template = out.String()
-
-	return
+	templateString = out.String()
+	return templateString, nil
 }

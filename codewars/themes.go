@@ -1,89 +1,183 @@
 package codewars
 
 type Theme struct {
-	Card          string
-	Headline_font string
-	Body_font     string
-	Icon          string
-	Rank_badge    string
+	Card           string
+	HeadlineFont   string
+	BodyFont       string
+	Icon           string
+	RankBadge      string
+	HasGradient    bool
+	GradientValues GradientValues
 }
+
+type GradientValues struct {
+	StartColor  string
+	StopColor   string
+	X1          string
+	Y1          string
+	X2          string
+	Y2          string
+	OffsetStart string
+	OffsetStop  string
+}
+
+// If you want to add a new gradient theme, you need to add some special
+// characters to the "Card" value. The format is:
+// {StartColor},{StopColor},{X1},{Y1},{X2},{Y2},{OffsetStart},{OffsetStop}
 
 var Themes = map[string]Theme{
 	"default": {
-		Card:          "#262729",
-		Headline_font: "#F1F5F3",
-		Body_font:     "#BB432C",
-		Icon:          "#6795DE",
-		Rank_badge:    "#181919",
+		Card:         "#262729",
+		HeadlineFont: "#F1F5F3",
+		BodyFont:     "#BB432C",
+		Icon:         "#6795DE",
+		RankBadge:    "#181919",
+	},
+	"gradient": {
+		Card:         "#262729,#BB432C,40,10,100,0,0,100",
+		HeadlineFont: "#F1F5F3",
+		BodyFont:     "#BB432C",
+		Icon:         "#6795DE",
+		RankBadge:    "#181919",
 	},
 	"light": {
-		Card:          "#fffefe",
-		Headline_font: "#181919",
-		Body_font:     "#BB432C",
-		Icon:          "#6795DE",
-		Rank_badge:    "#181919",
+		Card:         "#fffefe",
+		HeadlineFont: "#181919",
+		BodyFont:     "#BB432C",
+		Icon:         "#6795DE",
+		RankBadge:    "#181919",
+	},
+	"gradient_light": {
+		Card:         "#fffefe,#3C7EBB,40,10,100,0,0,100",
+		HeadlineFont: "#181919",
+		BodyFont:     "#BB432C",
+		Icon:         "#6795DE",
+		RankBadge:    "#181919",
+	},
+	"gradient_light_by_level": {
+		Card:         "#fffefe,{LEVEL},40,10,100,0,0,100",
+		HeadlineFont: "#181919",
+		BodyFont:     "#BB432C",
+		Icon:         "#6795DE",
+		RankBadge:    "#181919",
 	},
 	"dark": {
-		Card:          "#000000",
-		Headline_font: "#F1F5F3",
-		Body_font:     "#BB432C",
-		Icon:          "#6795DE",
-		Rank_badge:    "#181919",
+		Card:         "#000000",
+		HeadlineFont: "#F1F5F3",
+		BodyFont:     "#BB432C",
+		Icon:         "#6795DE",
+		RankBadge:    "#181919",
+	},
+	"gradient_dark": {
+		Card:         "#000000,#8D8D8D,40,10,100,0,0,100",
+		HeadlineFont: "#F1F5F3",
+		BodyFont:     "#BB432C",
+		Icon:         "#6795DE",
+		RankBadge:    "#181919",
+	},
+	"gradient_dark_by_level": {
+		Card:         "#000000,{LEVEL},40,10,100,0,0,100",
+		HeadlineFont: "#F1F5F3",
+		BodyFont:     "#BB432C",
+		Icon:         "#6795DE",
+		RankBadge:    "#181919",
 	},
 	"highcontrast": {
-		Card:          "#000",
-		Headline_font: "#e7f216",
-		Body_font:     "#fff",
-		Icon:          "#00ffff",
-		Rank_badge:    "#181919",
+		Card:         "#000",
+		HeadlineFont: "#e7f216",
+		BodyFont:     "#fff",
+		Icon:         "#00ffff",
+		RankBadge:    "#181919",
 	},
 	"midnight_purple": {
-		Card:          "#000",
-		Headline_font: "#9745f5",
-		Body_font:     "#fff",
-		Icon:          "#9f4bff",
-		Rank_badge:    "#181919",
+		Card:         "#000",
+		HeadlineFont: "#9745f5",
+		BodyFont:     "#fff",
+		Icon:         "#9f4bff",
+		RankBadge:    "#181919",
+	},
+	"gradient_midnight_puple": {
+		Card:         "#000,#9745f5,40,10,100,0,0,100",
+		HeadlineFont: "#9745f5",
+		BodyFont:     "#fff",
+		Icon:         "#9f4bff",
+		RankBadge:    "#181919",
+	},
+	"gradient_midnight_puple_by_level": {
+		Card:         "#000,{LEVEL},40,10,100,0,0,100",
+		HeadlineFont: "#9745f5",
+		BodyFont:     "#fff",
+		Icon:         "#9f4bff",
+		RankBadge:    "#181919",
 	},
 	"midnight_blue": {
-		Card:          "#000",
-		Headline_font: "#0079fa",
-		Body_font:     "#0079fa",
-		Icon:          "#0079fa",
-		Rank_badge:    "#2100fa",
+		Card:         "#000",
+		HeadlineFont: "#0079fa",
+		BodyFont:     "#0079fa",
+		Icon:         "#0079fa",
+		RankBadge:    "#2100fa",
 	},
 	"purple_dark": {
-		Card:          "#2d2b55",
-		Headline_font: "#c792ea",
-		Body_font:     "#a599e9",
-		Icon:          "#b362ff",
-		Rank_badge:    "#181919",
+		Card:         "#2d2b55",
+		HeadlineFont: "#c792ea",
+		BodyFont:     "#a599e9",
+		Icon:         "#b362ff",
+		RankBadge:    "#181919",
+	},
+	"gradient_purple_dark": {
+		Card:         "#2d2b55,#c792ea,40,10,100,0,0,100",
+		HeadlineFont: "#c792ea",
+		BodyFont:     "#a599e9",
+		Icon:         "#b362ff",
+		RankBadge:    "#181919",
+	},
+	"gradient_purple_dark_by_level": {
+		Card:         "#2d2b55,{LEVEL},40,10,100,0,0,100",
+		HeadlineFont: "#c792ea",
+		BodyFont:     "#a599e9",
+		Icon:         "#b362ff",
+		RankBadge:    "#181919",
 	},
 	"purple_light": {
-		Card:          "#ffffff",
-		Headline_font: "#a84ee5",
-		Body_font:     "#8c64e0",
-		Icon:          "#b362ff",
-		Rank_badge:    "#181919",
+		Card:         "#ffffff",
+		HeadlineFont: "#a84ee5",
+		BodyFont:     "#8c64e0",
+		Icon:         "#b362ff",
+		RankBadge:    "#181919",
+	},
+	"gradient_purple_light": {
+		Card:         "#ffffff,#a84ee5,40,10,100,0,0,100",
+		HeadlineFont: "#a84ee5",
+		BodyFont:     "#8c64e0",
+		Icon:         "#b362ff",
+		RankBadge:    "#181919",
+	},
+	"gradient_purple_light_by_level": {
+		Card:         "#ffffff,{LEVEL},40,10,100,0,0,100",
+		HeadlineFont: "#a84ee5",
+		BodyFont:     "#8c64e0",
+		Icon:         "#b362ff",
+		RankBadge:    "#181919",
 	},
 	"nightowl": {
-		Card:          "#011627",
-		Headline_font: "#c792ea",
-		Body_font:     "#7fdbca",
-		Icon:          "#ffeb95",
-		Rank_badge:    "#181919",
+		Card:         "#011627",
+		HeadlineFont: "#c792ea",
+		BodyFont:     "#7fdbca",
+		Icon:         "#ffeb95",
+		RankBadge:    "#181919",
 	},
 	"solarized_dark": {
-		Card:          "#002b36",
-		Headline_font: "#268bd2",
-		Body_font:     "#859900",
-		Icon:          "#b58900",
-		Rank_badge:    "#181919",
+		Card:         "#002b36",
+		HeadlineFont: "#268bd2",
+		BodyFont:     "#859900",
+		Icon:         "#b58900",
+		RankBadge:    "#181919",
 	},
 	"solarized_light": {
-		Card:          "#fdf6e3",
-		Headline_font: "#268bd2",
-		Body_font:     "#859900",
-		Icon:          "#b58900",
-		Rank_badge:    "#181919",
+		Card:         "#fdf6e3",
+		HeadlineFont: "#268bd2",
+		BodyFont:     "#859900",
+		Icon:         "#b58900",
+		RankBadge:    "#181919",
 	},
 }
