@@ -40,6 +40,13 @@ var Themes = map[string]Theme{
 		Icon:         "#6795DE",
 		RankBadge:    "#181919",
 	},
+	"gradient_by_level": {
+		Card:         "#262729,{LEVEL},40,10,100,0,0,100",
+		HeadlineFont: "#F1F5F3",
+		BodyFont:     "#BB432C",
+		Icon:         "#6795DE",
+		RankBadge:    "#181919",
+	},
 	"light": {
 		Card:         "#fffefe",
 		HeadlineFont: "#181919",
