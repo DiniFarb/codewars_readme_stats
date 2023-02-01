@@ -24,6 +24,16 @@ type GradientValues struct {
 // If you want to add a new gradient theme, you need to add some special
 // characters to the "Card" value. The format is:
 // {StartColor},{StopColor},{X1},{Y1},{X2},{Y2},{OffsetStart},{OffsetStop}
+// The {LEVEL} placeholder will be replaced with the color of the user's level.
+/*
+The values will be used to create a linear gradient like this:
+<defs>
+  <linearGradient id="grad" x1="{{.Theme.GradientValues.X1}}%" y1="{{.Theme.GradientValues.Y1}}%" x2="{{.Theme.GradientValues.X2}}%" y2="{{.Theme.GradientValues.Y2}}%">
+    <stop offset="{{.Theme.GradientValues.OffsetStart}}%" style="stop-color:{{.Theme.GradientValues.StartColor}};stop-opacity:1" />
+    <stop offset="{{.Theme.GradientValues.OffsetStop}}%" style="stop-color:{{.Theme.GradientValues.StopColor}};stop-opacity:1" />
+  </linearGradient>
+</defs>
+*/
 
 var Themes = map[string]Theme{
 	"default": {

@@ -65,11 +65,11 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 This allows you to change de default codewars like theme. You can find a example of all themes [here](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.md). 
 
 ```md
-![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=light)
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=gradient)
 ```
-![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=light)
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=gradient)
 
-If you wish for other themes I am happy to take a pull request, just place your desired color set in the [themes.go](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.go) and [themes.md](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.md) file and your ready to go for the PR.
+If you wish for other themes I am happy to take a pull request, just place your desired color set in the [themes.go](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.go) and [themes.md](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.md) file and your ready to go for the PR. For gradient themes see the special values for the `Card` property of the `Theme` struct. You can find more infos about how to add gradient values in the [themes.go](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.go) file.
 
 ### Hide Clan
 
