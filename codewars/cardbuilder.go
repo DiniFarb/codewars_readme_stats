@@ -46,6 +46,11 @@ func ConstructCard(settings url.Values, user User) (string, error) {
 		if strings.HasPrefix(settings.Get("theme"), "gradient") {
 			data.Theme.HasGradient = true
 			vals := strings.Split(data.Theme.Card, ",")
+			if len(vals) != 8 {
+				err := fmt.Errorf("gradient values must have 8 values")
+				fmt.Printf("error parsing gradient values: %v\n", err)
+				return "", err
+			}
 			for i, v := range vals {
 				if v == "{LEVEL}" {
 					vals[i] = LevelColors[user.Ranks.Overall.Name]

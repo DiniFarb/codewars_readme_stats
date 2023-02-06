@@ -25,6 +25,7 @@ type GradientValues struct {
 // characters to the "Card" value. The format is:
 // {StartColor},{StopColor},{X1},{Y1},{X2},{Y2},{OffsetStart},{OffsetStop}
 // The {LEVEL} placeholder will be replaced with the color of the user's level.
+// You also need to name the theme starting with "gradient" like "gradient_my_theme_name".
 /*
 The values will be used to create a linear gradient like this:
 <defs>
