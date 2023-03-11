@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths:
       - '**.go'
+      - '**.mod'
       - .github/workflows/docker-image.yml 
     
 jobs:
