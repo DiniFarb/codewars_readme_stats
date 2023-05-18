@@ -1,10 +1,10 @@
 package routes
 
 import (
-	"andreasvogt/codewars_readme_stats/codewars"
-	"io/ioutil"
+	"dinifarb/codewars_readme_stats/codewars"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -41,7 +41,7 @@ func GetCodewarsCard(c *gin.Context) {
 func Health(c *gin.Context) {
 	c.Writer.Header().Set("Content-Type", "image/svg+xml")
 	c.Writer.Header().Set("Cache-Control", "public, max-age=no-cache")
-	content, err := ioutil.ReadFile("./codewars/templates/health/on.svg")
+	content, err := os.ReadFile("./codewars/templates/health/on.svg")
 	if err != nil {
 		c.AbortWithError(400, err)
 	}

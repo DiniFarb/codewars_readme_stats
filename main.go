@@ -1,7 +1,7 @@
 package main
 
 import (
-	"andreasvogt/codewars_readme_stats/routes"
+	"dinifarb/codewars_readme_stats/routes"
 	"log"
 	"net/http"
 	"os"
