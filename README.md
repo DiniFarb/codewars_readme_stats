@@ -94,7 +94,7 @@ If you wish for other themes I am happy to take a pull request, just place your 
 The pattern for linking svg content `![name](link to svg)` can be wrapped in `[]()` markdown option to link somewhere when clicked.
 
 ```md
-[![Codewars](https://github.r2v.ch/codewars?user=USERNAME)(LINK)]
+[![Codewars](https://github.r2v.ch/codewars?user=USERNAME)](LINK)
 ```
 
 [![Codewars](https://github.r2v.ch/codewars?user=dinifarb&name=true)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
