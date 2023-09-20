@@ -22,20 +22,22 @@ func GetCodewarsCard(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Could not get Userdata from codewars"})
 		return
 	}
-	c.Writer.Header().Set("Content-Type", "image/svg+xml")
+	card, err := codewars.ConstructCard(c.Request.URL.Query(), &user)
+	if err != nil {
+		log.Println("Cunstruct codewars card failed with: ", err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Internal server error while constructing codewars card"})
+		return
+	}
+
 	cache := c.Request.URL.Query().Get("cache_control")
 	if cache == "" {
 		c.Writer.Header().Set("Cache-Control", "public, max-age=no-cache")
 	} else {
 		c.Writer.Header().Set("Cache-Control", "public, max-age="+cache)
 	}
-	data, err := codewars.ConstructCard(c.Request.URL.Query(), user)
-	if err != nil {
-		log.Println("Cunstruct codewars card failed with: ", err)
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Internal server error while constructing codewars card"})
-		return
-	}
-	c.String(http.StatusOK, data)
+
+	c.Writer.Header().Set("Content-Type", "image/svg+xml")
+	c.String(http.StatusOK, card)
 }
 
 func Health(c *gin.Context) {

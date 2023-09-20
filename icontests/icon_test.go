@@ -1,7 +1,8 @@
 package icontests
 
 import (
-	"io/ioutil"
+	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"strings"
@@ -14,11 +15,12 @@ func TestLanguagesForIcons(t *testing.T) {
 		t.Error("TestLanguagesForIcons() failed with error:", err)
 	}
 	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		t.Error("TestLanguagesForIcons() failed with error:", err)
 	}
 	bodyString := string(body)
+	fmt.Println(bodyString)
 	s1 := strings.Split(bodyString, `<option value="my-languages">My Languages</option>`)[1]
 	s2 := strings.Split(s1, `</select>`)[0]
 	cw_languages := strings.Split(s2, `<option value="`)

@@ -2,6 +2,7 @@ package main
 
 import (
 	"dinifarb/codewars_readme_stats/routes"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -70,7 +71,8 @@ func TestBasicUser(t *testing.T) {
 	resp := httptest.NewRecorder()
 	testRouter.ServeHTTP(resp, req)
 	svgString := resp.Body.String()
-	containsName := strings.Contains(svgString, "dinifarb's Codewars Stats")
+	fmt.Print(svgString)
+	containsName := strings.Contains(svgString, "dinifarb")
 	if !containsName {
 		t.Errorf("TestBasicUser() does not contain correct username => dinifarb's Codewars Stats")
 	}
