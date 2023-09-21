@@ -44,7 +44,7 @@ func GetCodewarsCard(c *gin.Context) {
 func Health(c *gin.Context) {
 	c.Writer.Header().Set("Content-Type", "image/svg+xml")
 	c.Writer.Header().Set("Cache-Control", "public, max-age=no-cache")
-	content, err := os.ReadFile("./codewars/on.svg")
+	content, err := os.ReadFile("./codewars/icons/on.svg")
 	if err != nil {
 		c.AbortWithError(400, err)
 	}

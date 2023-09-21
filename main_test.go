@@ -17,6 +17,7 @@ func SetupRouter() *gin.Engine {
 		c.Redirect(http.StatusTemporaryRedirect, "https://github.com/andreasvogt89/codewars_readme_stats")
 	})
 	r.GET("/codewars", routes.GetCodewarsCard)
+	r.GET("/health", routes.Health)
 	return r
 }
 
@@ -163,5 +164,18 @@ func TestUserWithTheme(t *testing.T) {
 	containsTheme := strings.Contains(svgString, "fill=\"#000000\"")
 	if !containsTheme {
 		t.Errorf("TestUserWithTheme() does not contain theme")
+	}
+}
+
+func TestHealth(t *testing.T) {
+	testRouter := SetupRouter()
+	req, err := http.NewRequest("GET", "/health", nil)
+	if err != nil {
+		t.Errorf("TestHealth() failed with error: %s", err)
+	}
+	resp := httptest.NewRecorder()
+	testRouter.ServeHTTP(resp, req)
+	if resp.Code != 200 {
+		t.Errorf("TestHealth() should end in 200 OK instead got: %d", resp.Code)
 	}
 }
