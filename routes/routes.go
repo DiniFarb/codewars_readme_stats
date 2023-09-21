@@ -15,6 +15,7 @@ func GetCodewarsCard(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Missing Query param => [user={yourname}]"})
 		return
 	}
+
 	var user codewars.User
 	err := user.GetUserData(username)
 	if err != nil {
@@ -22,7 +23,8 @@ func GetCodewarsCard(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Could not get Userdata from codewars"})
 		return
 	}
-	card, err := codewars.ConstructCard(c.Request.URL.Query(), &user)
+
+	card, err := codewars.CreateSvg(c.Request.URL.Query(), &user)
 	if err != nil {
 		log.Println("Cunstruct codewars card failed with: ", err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Internal server error while constructing codewars card"})
@@ -35,7 +37,6 @@ func GetCodewarsCard(c *gin.Context) {
 	} else {
 		c.Writer.Header().Set("Cache-Control", "public, max-age="+cache)
 	}
-
 	c.Writer.Header().Set("Content-Type", "image/svg+xml")
 	c.String(http.StatusOK, card)
 }
@@ -43,7 +44,7 @@ func GetCodewarsCard(c *gin.Context) {
 func Health(c *gin.Context) {
 	c.Writer.Header().Set("Content-Type", "image/svg+xml")
 	c.Writer.Header().Set("Cache-Control", "public, max-age=no-cache")
-	content, err := os.ReadFile("./codewars/templates/health/on.svg")
+	content, err := os.ReadFile("./codewars/on.svg")
 	if err != nil {
 		c.AbortWithError(400, err)
 	}

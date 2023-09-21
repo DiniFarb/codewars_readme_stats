@@ -2,7 +2,6 @@ package main
 
 import (
 	"dinifarb/codewars_readme_stats/routes"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -71,9 +70,98 @@ func TestBasicUser(t *testing.T) {
 	resp := httptest.NewRecorder()
 	testRouter.ServeHTTP(resp, req)
 	svgString := resp.Body.String()
-	fmt.Print(svgString)
 	containsName := strings.Contains(svgString, "dinifarb")
 	if !containsName {
 		t.Errorf("TestBasicUser() does not contain correct username => dinifarb's Codewars Stats")
+	}
+}
+
+func TestUserWithoutClan(t *testing.T) {
+	testRouter := SetupRouter()
+	req, err := http.NewRequest("GET", "/codewars?user=dinifarb&hinde_clan=true", nil)
+	if err != nil {
+		t.Errorf("TestUserWithoutClan() failed with error: %s", err)
+	}
+	resp := httptest.NewRecorder()
+	testRouter.ServeHTTP(resp, req)
+	svgString := resp.Body.String()
+	containsClan := !strings.Contains(svgString, "Clan")
+	if containsClan {
+		t.Errorf("TestUserWithoutClan() contains clan")
+	}
+}
+
+func TestUserWithTopLanguages(t *testing.T) {
+	testRouter := SetupRouter()
+	req, err := http.NewRequest("GET", "/codewars?user=dinifarb&top_languages=true", nil)
+	if err != nil {
+		t.Errorf("TestUserWithTopLanguages() failed with error: %s", err)
+	}
+	resp := httptest.NewRecorder()
+	testRouter.ServeHTTP(resp, req)
+	svgString := resp.Body.String()
+	containsTopLanguages := strings.Contains(svgString, "Top Languages")
+	if !containsTopLanguages {
+		t.Errorf("TestUserWithTopLanguages() does not contain top languages")
+	}
+}
+
+func TestUserWithGradient(t *testing.T) {
+	testRouter := SetupRouter()
+	req, err := http.NewRequest("GET", "/codewars?user=dinifarb&theme=gradient", nil)
+	if err != nil {
+		t.Errorf("TestUserWithGradient() failed with error: %s", err)
+	}
+	resp := httptest.NewRecorder()
+	testRouter.ServeHTTP(resp, req)
+	svgString := resp.Body.String()
+	containsGradient := strings.Contains(svgString, "linearGradient")
+	if !containsGradient {
+		t.Errorf("TestUserWithGradient() does not contain gradient")
+	}
+}
+
+func TestUserWithStroke(t *testing.T) {
+	testRouter := SetupRouter()
+	req, err := http.NewRequest("GET", "/codewars?user=dinifarb&stroke=red", nil)
+	if err != nil {
+		t.Errorf("TestUserWithStroke() failed with error: %s", err)
+	}
+	resp := httptest.NewRecorder()
+	testRouter.ServeHTTP(resp, req)
+	svgString := resp.Body.String()
+	containsStroke := strings.Contains(svgString, "stroke=\"red\"")
+	if !containsStroke {
+		t.Errorf("TestUserWithStroke() does not contain stroke")
+	}
+}
+
+func TestUserWithNickname(t *testing.T) {
+	testRouter := SetupRouter()
+	req, err := http.NewRequest("GET", "/codewars?user=dinifarb&name=true", nil)
+	if err != nil {
+		t.Errorf("TestUserWithNickname() failed with error: %s", err)
+	}
+	resp := httptest.NewRecorder()
+	testRouter.ServeHTTP(resp, req)
+	svgString := resp.Body.String()
+	containsNickname := strings.Contains(svgString, "DiniFarb")
+	if !containsNickname {
+		t.Errorf("TestUserWithNickname() does not contain nickname")
+	}
+}
+
+func TestUserWithTheme(t *testing.T) {
+	testRouter := SetupRouter()
+	req, err := http.NewRequest("GET", "/codewars?user=dinifarb&theme=dark", nil)
+	if err != nil {
+		t.Errorf("TestUserWithTheme() failed with error: %s", err)
+	}
+	resp := httptest.NewRecorder()
+	testRouter.ServeHTTP(resp, req)
+	svgString := resp.Body.String()
+	containsTheme := strings.Contains(svgString, "fill=\"#000000\"")
+	if !containsTheme {
+		t.Errorf("TestUserWithTheme() does not contain theme")
 	}
 }

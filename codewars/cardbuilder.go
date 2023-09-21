@@ -34,7 +34,7 @@ type CardData struct {
 	HasGradient  bool
 }
 
-func ConstructCard(settings url.Values, user *User) (string, error) {
+func CreateSvg(settings url.Values, user *User) (string, error) {
 	svgWriter := svgWriter{
 		content: "",
 	}
@@ -81,21 +81,34 @@ func (c *CardData) CreateSvg() {
 	}
 	box := fmt.Sprintf(`viewBox="0 0 500 %d"`, height)
 	c.Svg.Start(500, height, box)
-	if c.HasGradient {
-		c.Svg.Rect(0, 0, 500, height, "fill:url(#grad)", `rx="4.5"`)
-	} else {
-		c.Svg.Rect(0, 0, 500, height, "fill:"+c.Theme.CardColor, `rx="4.5"`)
+	attr := []string{`rx="4.5"`}
+	if c.ShowStroke {
+		attr = append(attr, fmt.Sprintf(`stroke="%s"`, c.StrokeColor))
 	}
+	if c.HasGradient {
+		attr = append(attr, `fill="url(#grad)"`)
+	} else {
+		attr = append(attr, fmt.Sprintf(`fill="%s"`, c.Theme.CardColor))
+	}
+	c.Svg.Rect(0, 0, 500, height, strings.Join(attr, " "))
 }
 
 func (c *CardData) SetTitle() {
-	style := fmt.Sprintf("fill:%s;font-weight: 500;font-family:%s;", c.Theme.HeadlineFontColor, c.Theme.Font)
-	if c.Nickname {
-		c.Svg.Text(10, 20, c.User.Name+"'s Codewars Stats", style, `id="title"`)
-	} else {
-		c.Svg.Text(10, 20, c.User.Username+"'s Codewars Stats", style, `id="title"`)
+	attr := []string{
+		fmt.Sprintf(`fill="%s"`, c.Theme.HeadlineFontColor),
+		`font-weight="500"`,
+		fmt.Sprintf(`font-family="%s"`, c.Theme.Font),
+		`opacity="0"`,
+		`id="title"`,
 	}
-	c.Svg.Animate("#title", "opacity", 0, 1, 2, 1, `ease-in-out forwards`)
+	name := "%s's Codewars Stats"
+	if c.Nickname {
+		name = fmt.Sprintf(name, c.User.Name)
+	} else {
+		name = fmt.Sprintf(name, c.User.Username)
+	}
+	c.Svg.Text(10, 20, name, attr...)
+	c.Svg.Animate("#title", "opacity", 0, 1, 2, 1, `begin="0.3"`, `fill="freeze"`)
 }
 
 func (c *CardData) SetStatsTexts() {
@@ -109,32 +122,52 @@ func (c *CardData) SetStatsTexts() {
 		clan := []string{fmt.Sprintf("Clan:-%s", c.User.Clan)}
 		stats = append(clan, stats...)
 	}
-	style := fmt.Sprintf("fill:%s;font-weight: 500;font-size:15px;font-family:%s;", c.Theme.BodyFontColor, c.Theme.Font)
+	attr := []string{
+		fmt.Sprintf(`fill="%s"`, c.Theme.BodyFontColor),
+		`font-weight="500"`,
+		`font-size="15px"`,
+		fmt.Sprintf(`font-family="%s"`, c.Theme.Font),
+		`id="title"`,
+	}
 	height := 55
-	fadeIndely := 0.0
-	c.Svg.Group(style)
+	delay := 0.2
+	c.Svg.Group(attr...)
 	for i, stat := range stats {
 		key := strings.Split(stat, "-")[0]
 		value := strings.Split(stat, "-")[1]
 		idKey := fmt.Sprintf("k-%d", i)
-		c.Svg.Text(15, height, key, "opacity:0", fmt.Sprintf(`id="%s"`, idKey))
-		c.Svg.Animate("#"+idKey, "opacity", 0, 1, 2, 1, `begin="0.5"`, `fill="freeze"`)
+		delayString := fmt.Sprintf(`begin="%.1f"`, delay)
+		c.Svg.Text(15, height, key, `opacity="0"`, fmt.Sprintf(`id="%s"`, idKey))
+		c.Svg.Animate("#"+idKey, "opacity", 0, 1, 2, 1, delayString, `fill="freeze"`)
 		idValue := fmt.Sprintf("v-%d", i)
-		c.Svg.Text(150, height, value, "opacity:0", fmt.Sprintf(`id="%s"`, idValue))
-		c.Svg.Animate("#"+idValue, "opacity", 0, 1, 2, 1, `begin="0.5"`, `fill="freeze"`)
+		c.Svg.Text(150, height, value, `opacity="0"`, fmt.Sprintf(`id="%s"`, idValue))
+		c.Svg.Animate("#"+idValue, "opacity", 0, 1, 2, 1, delayString, `fill="freeze"`)
 		height += 25
-		fadeIndely += 0.2
+		delay += 0.2
 	}
 	c.Svg.Gend()
 }
 
 func (c *CardData) SetLevel() {
 	c.Svg.Group()
-	polyStyle := fmt.Sprintf("fill:%s;stroke:%s;stroke-width:3;opacity:0", c.Theme.RankBadgeColor, c.LevelColor)
-	c.Svg.Polygon([]int{340, 355, 435, 450, 435, 355}, []int{107, 80, 80, 107, 135, 135}, polyStyle, `id="level"`)
+	polyAttr := []string{
+		fmt.Sprintf(`fill="%s"`, c.Theme.RankBadgeColor),
+		fmt.Sprintf(`stroke="%s"`, c.LevelColor),
+		`stroke-width="3"`,
+		`opacity="0"`,
+		`id="level"`,
+	}
+	c.Svg.Polygon([]int{340, 355, 435, 450, 435, 355}, []int{107, 80, 80, 107, 135, 135}, polyAttr...)
 	c.Svg.Animate("#level", "opacity", 0, 1, 2, 1, `begin="1"`, `fill="freeze"`)
-	textStyle := fmt.Sprintf("fill:%s;font-weight: 600;font-size:30px;font-family:%s;opacity:0", c.LevelColor, c.Theme.Font)
-	c.Svg.Text(360, 118, c.User.Ranks.Overall.Name, textStyle, `id="level-text"`)
+	textAttr := []string{
+		fmt.Sprintf(`fill="%s"`, c.LevelColor),
+		`font-weight="600"`,
+		`font-size="30px"`,
+		fmt.Sprintf(`font-family="%s"`, c.Theme.Font),
+		`opacity="0"`,
+		`id="level-text"`,
+	}
+	c.Svg.Text(360, 118, c.User.Ranks.Overall.Name, textAttr...)
 	c.Svg.Animate("#level-text", "opacity", 0, 1, 2, 1, `begin="1"`, `fill="freeze"`)
 	c.Svg.Gend()
 }
@@ -175,12 +208,25 @@ func (c *CardData) SetGradient() error {
 	return nil
 }
 
+const noIcon = `
+<svg icon="this_is_a_hook">
+	<text x="10" y="10" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">
+	%s
+	</text>
+</svg>`
+
 func (c *CardData) SetIcons() {
 	c.Svg.Group()
-	textStyle := fmt.Sprintf("fill:%s;font-weight:500;font-size:15px;font-family:%s;opacity:0", c.Theme.BodyFontColor, c.Theme.Font)
-	c.Svg.Text(199, 190, "Top Languages", textStyle, `id="top-languages"`)
+	textAttr := []string{
+		fmt.Sprintf(`fill="%s"`, c.Theme.BodyFontColor),
+		`font-weight="500"`,
+		`font-size="15px"`,
+		fmt.Sprintf(`font-family="%s"`, c.Theme.Font),
+		`opacity="0"`,
+		`id="top-languages"`,
+	}
+	c.Svg.Text(199, 190, "Top Languages", textAttr...)
 	c.Svg.Animate("#top-languages", "opacity", 0, 1, 2, 1, `begin="0.8"`, `fill="freeze"`)
-	c.Svg.Gend()
 	keys := make([]string, 0, len(c.User.Ranks.Languages))
 	for key := range c.User.Ranks.Languages {
 		keys = append(keys, key)
@@ -204,22 +250,23 @@ func (c *CardData) SetIcons() {
 		if i > 2 {
 			continue
 		}
-		icon, err := os.ReadFile("./codewars/templates/icons/" + k + ".svg")
+		icon, err := os.ReadFile("./codewars/icons/" + k + ".svg")
 		if err != nil {
 			log.Printf("Could not get icon svg for: %v => %v", k, err)
-			style := fmt.Sprintf("fill:%s;font-weight: 500;font-size:15px;font-family:%s;opacity:0", c.Theme.IconColor, c.Theme.Font)
-			c.Svg.Text(x, 200, k[0:1], style, `id="icon-`+strconv.Itoa(i)+`"`)
-		} else {
-			repls := `fill="` + c.Theme.IconColor + `"` +
-				` id="icon-` + strconv.Itoa(i) + `"` +
-				` opacity="0"` +
-				` x="` + strconv.Itoa(x) + `"` +
-				` y="200"` +
-				` viewBox="0 0 150 150"`
-			ic := strings.Replace(string(icon), `viewBox="0 0 24 24"`, repls, 1)
-			c.Svg.Writer.Write([]byte(ic))
+			icon = []byte(fmt.Sprintf(noIcon, k[0:2]))
 		}
+		attr := []string{
+			fmt.Sprintf(`fill="%s"`, c.Theme.IconColor),
+			fmt.Sprintf(`id="icon-%d"`, i),
+			`opacity="0"`,
+			fmt.Sprintf(`x="%d"`, x),
+			`y="200"`,
+			`viewBox="0 0 150 150"`,
+		}
+		ic := strings.Replace(string(icon), `icon="this_is_a_hook"`, strings.Join(attr, " "), 1)
+		c.Svg.Writer.Write([]byte(ic))
 		c.Svg.Animate("#icon-"+strconv.Itoa(i), "opacity", 0, 1, 2, 1, `begin="1.2s"`, `fill="freeze"`)
 		i++
 	}
+	c.Svg.Gend()
 }
