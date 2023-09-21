@@ -180,7 +180,7 @@ func (c *CardData) SetGradient() error {
 		fmt.Printf("error parsing gradient values: %v\n", err)
 		return err
 	}
-	for i, v := range vals[0:1] {
+	for i, v := range vals[0:2] {
 		if v == "{LEVEL}" {
 			vals[i] = c.LevelColor
 		}
