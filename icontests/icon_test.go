@@ -1,35 +1,46 @@
 package icontests
 
 import (
-	"io/ioutil"
+	"fmt"
+	"io"
 	"net/http"
 	"os"
+	"regexp"
 	"strings"
 	"testing"
 )
 
 func TestLanguagesForIcons(t *testing.T) {
-	resp, err := http.Get("https://www.codewars.com/kata/search/")
+	resp, err := http.Get("https://docs.codewars.com/languages/")
 	if err != nil {
 		t.Error("TestLanguagesForIcons() failed with error:", err)
 	}
 	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		t.Error("TestLanguagesForIcons() failed with error:", err)
 	}
 	bodyString := string(body)
-	s1 := strings.Split(bodyString, `<option value="my-languages">My Languages</option>`)[1]
-	s2 := strings.Split(s1, `</select>`)[0]
-	cw_languages := strings.Split(s2, `<option value="`)
-	file, err := os.Open("../codewars/templates/icons/")
+	pattern := `href="/languages/([^"]+)"`
+	regex := regexp.MustCompile(pattern)
+	matches := regex.FindAllStringSubmatch(bodyString, -1)
+	languages := make([]string, 0)
+	fmt.Println(matches)
+	for _, match := range matches {
+		if len(match) >= 2 {
+			languageName := match[1]
+			fmt.Println(languageName)
+			languages = append(languages, languageName)
+		}
+	}
+	file, err := os.Open("../codewars/icons/")
 	if err != nil {
 		t.Error("TestLanguagesForIcons() failed with error:", err)
 	}
 	defer file.Close()
 	names, _ := file.Readdirnames(0)
 	count := 0
-	for i, l := range cw_languages {
+	for i, l := range languages {
 		if i != 0 {
 			lang := strings.Split(l, `">`)[0]
 			contains := false
