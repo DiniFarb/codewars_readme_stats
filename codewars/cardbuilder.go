@@ -96,7 +96,8 @@ func (c *CardData) CreateSvg() {
 func (c *CardData) SetTitle() {
 	attr := []string{
 		fmt.Sprintf(`fill="%s"`, c.Theme.HeadlineFontColor),
-		`font-weight="500"`,
+		`font-weight="600"`,
+		`font-size="20px"`,
 		fmt.Sprintf(`font-family="%s"`, c.Theme.Font),
 		`opacity="0"`,
 		`id="title"`,
@@ -107,7 +108,7 @@ func (c *CardData) SetTitle() {
 	} else {
 		name = fmt.Sprintf(name, c.User.Username)
 	}
-	c.Svg.Text(10, 20, name, attr...)
+	c.Svg.Text(10, 25, name, attr...)
 	c.Svg.Animate("#title", "opacity", 0, 1, 2, 1, `begin="0.3"`, `fill="freeze"`)
 }
 
@@ -129,7 +130,7 @@ func (c *CardData) SetStatsTexts() {
 		fmt.Sprintf(`font-family="%s"`, c.Theme.Font),
 		`id="title"`,
 	}
-	height := 55
+	height := 60
 	delay := 0.2
 	c.Svg.Group(attr...)
 	for i, stat := range stats {
