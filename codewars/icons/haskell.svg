@@ -1,1 +1,5 @@
-<svg icon="this_is_a_hook" xmlns="http://www.w3.org/2000/svg"><title>Haskell</title><path d="M0 3.535L5.647 12 0 20.465h4.235L9.883 12 4.235 3.535zm5.647 0L11.294 12l-5.647 8.465h4.235l3.53-5.29 3.53 5.29h4.234L9.883 3.535zm8.941 4.938l1.883 2.822H24V8.473zm2.824 4.232l1.882 2.822H24v-2.822z"/></svg>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="64" heigth="64" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<path d="M422 787l481 -721h-181l-150 225l-150 -225h-181l241 361l-241 360h181zM181 787h-180l240 -360l-240 -361h180l241 361l-241 360v0zM622 577l80 -120h321v120h-401zM823 276h200v121h-281l81 -121v0z" />
+</svg>

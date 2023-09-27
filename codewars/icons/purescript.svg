@@ -1,1 +1,5 @@
-<svg icon="this_is_a_hook" xmlns="http://www.w3.org/2000/svg"><title>PureScript</title><path d="M19.166 4.6l-1.24 1.24 3.97 3.97-3.97 3.97 1.24 1.24 4.58-4.6a.87.87 0 0 0 0-1.23zM6.955 6.74l1.87 1.75h8.23l-1.87-1.75zm-2.1 2.24l-4.6 4.6a.87.87 0 0 0 0 1.23l4.6 4.59 1.23-1.24-3.97-3.97 3.97-3.97-1.24-1.24zm3.97 2.14l-1.87 1.76h8.23l1.87-1.76zm-1.87 4.39l1.87 1.75h8.23l-1.87-1.75z"/></svg>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="64" heigth="64" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<path d="M376 224l-80 74h352l79 -74h-351v0zM376 485l-80 -74h352l79 74h-351v0zM727 598l-79 74h-352l80 -74h351v0zM260 524l-53 53l-196 -196q-5 -5 -8 -12t-3 -15q0 -7 3 -14t8 -12l196 -196l53 53l-170 169l170 170v0zM1013 568l-196 196l-52 -53l169 -169l-169 -170l52 -53 l196 196q5 5 8 12t3 15q0 7 -3 14t-8 12v0z" />
+</svg>
