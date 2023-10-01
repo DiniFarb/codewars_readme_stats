@@ -1,5 +1,4 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="64" heigth="64" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" icon="this_is_a_hook" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<title>Haxe</title>
 <path d="M989 232l-108 216l111 221v259h-259l-221 -111l-221 111h-259v-259l111 -221l-111 -221v-259h259l221 111l221 -111h259v259l-3 5v0zM832 469l-299 299l398 99l-99 -398v0zM192 469l-99 398l398 -99l-299 -299v0zM192 427l299 -299l-398 -99l99 398v0zM832 427l99 -398 l-398 99l299 299v0z" />
 </svg>

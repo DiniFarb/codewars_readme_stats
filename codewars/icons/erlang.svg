@@ -1,5 +1,4 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="64" heigth="64" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" icon="this_is_a_hook" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<title>Erlang</title>
 <path d="M164 104h-75.5h-75.5h-2.5h-3.5h-6v645h9h1.5h1.5h63.5h63.5q-7 -11 -14 -23.5t-16 -27.5q-25 -40 -44 -95t-23 -116q-4 -62 5 -118q8 -57 24.5 -106t40.5 -89t51 -70v0zM890 749q36 -54 58 -129.5t12 -168.5h-147h-147.5h-146.5h-147q2 -94 22.5 -165t73.5 -110 q56 -40 113 -39q56 2 106 28t89 66q40 41 60 78q36 -20 74.5 -39.5t73.5 -38.5q-15 -24 -47.5 -71t-37.5 -56h62h62v161v161.5v161.5v161h-66h-67v0zM649 602q6 67 -36 99q-43 32 -96 30.5t-97 -34.5t-39 -95h134h134z" />
 </svg>

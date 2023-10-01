@@ -1,5 +1,4 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="64" heigth="64" viewBox="0 -84 1024 1024" transform="scale(1,-1)">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" icon="this_is_a_hook" viewBox="0 -84 1024 1024" transform="scale(1,-1)">
+<title>Scala</title>
 <path d="M820 938q0 -31 -64 -57q-65 -27 -159.5 -47.5t-201.5 -34.5t-191 -20v-231q35 -2 76 -6q40 -4 83 -9.5t87 -11.5q44 -7 86 -15q-42 -8 -86 -15q-44 -6 -87 -11.5t-83 -9.5q-41 -4 -76 -6v-231q35 -3 76 -6q40 -4 83 -9.5t87 -12.5q43 -6 85 -14q-42 -8 -85 -15 q-44 -7 -87 -12t-83 -9q-41 -4 -76 -7v-232l111 16q78 12 157 28t148 35t122 39q53 21 78 40v233q0 11 -18.5 23t-50.5 24q22 9 40 18t29 18v232q0 11 -18.5 23t-49.5 24q22 9 39.5 18t28.5 18v233v0zM751 329q23 -9 33 -15.5t12 -8.5q-1 -4 -9.5 -11.5t-28.5 -16.5 q-3 -2 -6.5 -3.5t-6.5 -2.5v0q-35 -15 -88 -29.5t-122 -27.5q-33 6 -69 12t-72 11q51 9 101 20q50 10 96.5 22t86.5 25q41 12 73 25v0zM752 644q22 -9 32 -15t12 -9q-1 -3 -6 -8t-16 -12v0q-3 -1 -5.5 -2.5t-4.5 -2.5q-33 -17 -91 -34t-136 -32q-34 7 -70 12.5t-72 10.5 q51 9 101 20t96 22.5t87 24.5q40 12 73 25v0z" />
 </svg>

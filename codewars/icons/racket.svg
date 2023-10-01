@@ -1,5 +1,4 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="64" heigth="64" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" icon="this_is_a_hook" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<title>Racket</title>
 <path d="M910 135q26 33 46 69t34 75.5t21 82.5q7 42 7 86q0 105 -39 197q-40 92 -109 161t-161 109q-92 39 -197 39q-46 0 -89.5 -7.5t-83.5 -22.5q77 -40 163 -122q85 -83 164 -189.5t144 -230.5q65 -123 100 -247v0zM439 631q-29 32 -60 61q-32 28 -64.5 53t-66.5 46 q-35 21 -70 38q-39 -35 -71 -77q-32 -43 -54.5 -91.5t-34.5 -101.5q-12 -54 -12 -111q0 -48 8 -93q9 -46 25 -88t39 -81q24 -38 53 -71q26 77 62 152q35 75 76.5 142t84.5 124q44 57 85 98zM533 517q-41 -45 -81 -104t-74.5 -127t-61.5 -141t-42 -144q54 -29 114 -44 t124 -15q66 0 127.5 16t116.5 46q-16 72 -38 141q-23 69 -51 133.5t-62 124.5t-72 114v0z" />
 </svg>

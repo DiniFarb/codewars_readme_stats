@@ -1,5 +1,4 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="64" heigth="64" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" icon="this_is_a_hook" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<title>C#</title>
 <path d="M467 366l179 -54q-9 -38 -23 -69.5t-34 -56.5q-19 -25 -43.5 -44.5t-52.5 -31.5q-29 -13 -66 -19.5t-81 -6.5q-54 0 -98.5 7.5t-78.5 23.5t-63.5 43.5t-54.5 67.5q-25 39 -37.5 90t-12.5 112q0 83 22 146t66 107q43 44 105 66.5t142 22.5q63 0 112 -13t85 -38t62.5 -64 t44.5 -92l-181 -40q-5 15 -10 26t-10 18q-9 12 -19.5 21t-22.5 16q-13 6 -26.5 9t-29.5 3q-35 0 -61.5 -14t-45.5 -42q-14 -21 -21 -53.5t-7 -76.5q0 -56 8.5 -93.5t25.5 -58.5q17 -20 40.5 -30t53.5 -10q29 0 51.5 8t37.5 25q15 16 26 40t18 55v0zM971 460l-14 -68h66v-75 h-81l-19 -95h-77l19 95h-59l-19 -95h-77l19 95h-37v75h52l14 68h-66v75h81l19 96h77l-19 -96h59l19 96h77l-19 -96h37v-75h-52v0zM894 460h-59l-14 -68h59l14 68v0z" />
 </svg>

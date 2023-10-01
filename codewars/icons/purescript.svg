@@ -1,5 +1,4 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="64" heigth="64" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" icon="this_is_a_hook" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<title>PureScript</title>
 <path d="M376 224l-80 74h352l79 -74h-351v0zM376 485l-80 -74h352l79 74h-351v0zM727 598l-79 74h-352l80 -74h351v0zM260 524l-53 53l-196 -196q-5 -5 -8 -12t-3 -15q0 -7 3 -14t8 -12l196 -196l53 53l-170 169l170 170v0zM1013 568l-196 196l-52 -53l169 -169l-169 -170l52 -53 l196 196q5 5 8 12t3 15q0 7 -3 14t-8 12v0z" />
 </svg>

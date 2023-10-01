@@ -1,5 +1,4 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="64" heigth="64" viewBox="0 -64 1506 1024" transform="scale(1,-1)">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" icon="this_is_a_hook" viewBox="0 -64 1506 1024" transform="scale(1,-1)">
+<title>D</title>
 <path d="M1368 801v0q0 19 -17.5 35t-46.5 16t-40 -11t-11 -40q0 -20 11 -36t40 -16q10 0 37 11.5t27 40.5zM714 813v0q-48 10 -109 15q-61 6 -117.5 8t-99.5 3h-59h-179v-808h410q72 0 147 26q74 25 140 72t119 113q53 67 81 148q29 0 56.5 8t46.5 18q67 19 91 73.5t24 93.5 q0 33 -14 68q-14 34 -41.5 61.5t-68.5 45.5q-41 17 -94 17q-19 0 -70 -32t-71 -32q-28 0 -86 46.5t-106 55.5v0zM586 685q57 -14 105 -34q47 -20 80.5 -49t52.5 -68q18 -40 18 -92q0 -58 -26 -105q-26 -48 -67 -81.5t-91 -51.5q-50 -19 -98 -19h-231v500h257v0z" />
 </svg>

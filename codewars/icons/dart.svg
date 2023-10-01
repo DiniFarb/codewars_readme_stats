@@ -1,5 +1,4 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="64" heigth="64" viewBox="0 -64 1016 1024" transform="scale(1,-1)">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" icon="this_is_a_hook" viewBox="0 -64 1016 1024" transform="scale(1,-1)">
+<title>Dart</title>
 <path d="M727 720l187 -504q-12 -24 -20 -47.5t-20 -41.5l-602 593h455v0zM833 86q-18 -6 -41.5 -17t-47.5 -23l-504 187v447l593 -594v0zM711 810q12 -6 19.5 -25.5t13.5 -31.5h-504q33 21 82 56q49 34 96.5 66.5t84.5 56.5q36 24 46 24q15 0 39 -18q24 -19 48 -43t45 -49 q21 -24 30 -36zM1012 517v-390q-31 -6 -61.5 -16t-60.5 -17q12 31 24 61.5t25 60.5l-179 512q24 3 56 -20q33 -24 67 -58t68 -71q33 -38 61 -62v0zM207 225q-18 -7 -48 14q-29 20 -59.5 51.5t-56.5 65.5q-27 34 -39 55l203 309v-495v0zM744 21q30 6 60.5 21.5t61.5 27.5 q-7 -30 -18 -64.5t-23 -65.5h-374q-21 18 -58 49q-37 30 -73 66t-62 74t-26 71l512 -179v0z" />
 </svg>
