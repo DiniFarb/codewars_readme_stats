@@ -117,7 +117,7 @@ func (c *CardData) SetStatsTexts() {
 		fmt.Sprintf("Position:-%d", c.User.LeaderboardPosition),
 		fmt.Sprintf("Honor:-%d", c.User.Honor),
 		fmt.Sprintf("Score:-%d", c.User.Ranks.Overall.Score),
-		fmt.Sprintf("SovledKatas:-%d", c.User.CodeChallenges.TotalCompleted),
+		fmt.Sprintf("Solved Katas:-%d", c.User.CodeChallenges.TotalCompleted),
 	}
 	if !c.HideClan {
 		clan := []string{fmt.Sprintf("Clan:-%s", c.User.Clan)}
