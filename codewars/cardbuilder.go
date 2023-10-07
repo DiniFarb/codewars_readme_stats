@@ -2,9 +2,7 @@ package codewars
 
 import (
 	"fmt"
-	"log"
 	"net/url"
-	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -209,13 +207,6 @@ func (c *CardData) SetGradient() error {
 	return nil
 }
 
-const noIcon = `
-<svg icon="this_is_a_hook">
-	<text x="10" y="10" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">
-	%s
-	</text>
-</svg>`
-
 func (c *CardData) SetIcons() {
 	c.Svg.Group()
 	textAttr := []string{
@@ -251,23 +242,20 @@ func (c *CardData) SetIcons() {
 		if i > 2 {
 			continue
 		}
-		icon, err := os.ReadFile("./codewars/icons/" + k + ".svg")
-		if err != nil {
-			log.Printf("Could not get icon svg for: %v => %v", k, err)
-			icon = []byte(fmt.Sprintf(noIcon, k[0:2]))
-		}
 		attr := []string{
 			fmt.Sprintf(`fill="%s"`, c.Theme.IconColor),
 			fmt.Sprintf(`id="icon-%d"`, i),
 			`opacity="0"`,
-			fmt.Sprintf(`x="%d"`, x),
-			`y="-250"`,
-			`heigth="45"`,
-			`width="45"`,
+			fmt.Sprintf(`transform="translate(%d, 244)"`, x),
 		}
-		ic := strings.Replace(string(icon), `icon="this_is_a_hook"`, strings.Join(attr, " "), 1)
-		c.Svg.Writer.Write([]byte(ic))
+		c.Svg.Group(attr...)
+		if icon, ok := Icons[k]; ok {
+			c.Svg.Path(icon, `transform="scale(1,-1) scale(0.05)"`)
+		} else {
+			c.Svg.Text(-10, -10, k[0:2])
+		}
 		c.Svg.Animate("#icon-"+strconv.Itoa(i), "opacity", 0, 1, 2, 1, `begin="1.2s"`, `fill="freeze"`)
+		c.Svg.Gend()
 		i++
 	}
 	c.Svg.Gend()

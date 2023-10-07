@@ -132,7 +132,6 @@ Or just clone this repo and do whatever you want with it.😉
 
 - Inspired by https://github.com/anuraghazra/github-readme-stats
 
-- Icons are from https://simpleicons.org/
+- Icons are from https://icomoon.io/
 
-- If you have any questions don't hesitate open a issue! 
-
+- If you have any questions don't hesitate open a issue!
