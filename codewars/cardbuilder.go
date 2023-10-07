@@ -238,11 +238,11 @@ func (c *CardData) SetIcons() {
 	var x int
 	switch len(keys) {
 	case 1:
-		x = 110
+		x = 220
 	case 2:
-		x = 80
+		x = 190
 	default:
-		x = 50
+		x = 160
 	}
 	for i, k := range keys {
 		if i > 0 {
@@ -261,8 +261,9 @@ func (c *CardData) SetIcons() {
 			fmt.Sprintf(`id="icon-%d"`, i),
 			`opacity="0"`,
 			fmt.Sprintf(`x="%d"`, x),
-			`y="200"`,
-			`viewBox="0 0 150 150"`,
+			`y="-250"`,
+			`heigth="45"`,
+			`width="45"`,
 		}
 		ic := strings.Replace(string(icon), `icon="this_is_a_hook"`, strings.Join(attr, " "), 1)
 		c.Svg.Writer.Write([]byte(ic))

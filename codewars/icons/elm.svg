@@ -1,1 +1,4 @@
-<svg icon="this_is_a_hook" xmlns="http://www.w3.org/2000/svg"><title>Elm</title><path d="M23.986 12.806V23.2l-5.197-5.197zM6.796 6.01H17.19l-5.197 5.197zm9.275-1.12H5.677L.8.015h10.394zm7.116 7.117L17.99 6.81l-5.197 5.197 5.197 5.197zm.813-.813L12.806 0H24zM0 23.2V.813l11.194 11.194zm23.187.8H.8l11.193-11.194Z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" icon="this_is_a_hook" viewBox="0 -64 1024 1024" transform="scale(1,-1)">
+<title>Elm</title>
+<path d="M512 498l221 221h-443l222 -221v0zM27 981l224 -222h484l-223 222h-485v0zM782 712l241 -241l-242 -242l-242 240l243 243v0zM1024 527v454h-456zM483 469l-483 485v-968l483 483v0zM808 200l216 -214v430l-216 -216v0zM512 442l-485 -485h968l-483 485v0z" />
+</svg>
