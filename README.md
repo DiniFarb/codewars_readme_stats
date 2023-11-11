@@ -32,6 +32,7 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 | [stroke](https://github.com/dinifarb/codewars_readme_stats#Set-card-border) |no|sets a border with the passed in color around the card |`stroke=black`<br>`stroke=rgb(0,0,0)`<br> `stroke=%23000000`|
 | [theme](https://github.com/dinifarb/codewars_readme_stats#Themes) |no| sets a theme for the card |`theme=light`<br>`theme=dark`|
 | [hide_clan](https://github.com/dinifarb/codewars_readme_stats#hide-clan) |no| removes the clan name from the card |`hide_clan=true`|
+| [cache-control](https://github.com/dinifarb/codewars_readme_stats#cache-control) |no| changes the cache-control http header value |`cache_control=86400`|
 
 ## Examples for all query params
 
@@ -41,7 +42,7 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 ![Codewars](https://github.r2v.ch/codewars?user=USERNAME&name=true)
 ```
 
-![Codewars](https://github.r2v.ch/codewars?user=dinifarb&name=true)
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&name=true&cache_control=86400)
 
 ### Top trained languages icons
 
@@ -49,7 +50,7 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 ![Codewars](https://github.r2v.ch/codewars?user=USERNAME&top_languages=true)
 ```
 
-![Codewars](https://github.r2v.ch/codewars?user=dinifarb&top_languages=true)
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&top_languages=true&cache_control=86400)
 
 ### Set card border
 
@@ -59,7 +60,7 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 > :warning: **Important:** 
 > You can pass in the usual css color types just make sure to use `%23` instead of `#` while using hex code because of the [url encoding](https://www.w3schools.com/tags/ref_urlencode.asp)
 
-![Codewars](https://github.r2v.ch/codewars?user=dinifarb&stroke=%23BB432C)
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&stroke=%23BB432C&cache_control=86400)
 
 ### Themes
 This allows you to change de default codewars like theme. You can find a example of all themes [here](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.md). 
@@ -67,7 +68,7 @@ This allows you to change de default codewars like theme. You can find a example
 ```md
 ![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=gradient)
 ```
-![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=gradient)
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=gradient&cache_control=86400)
 
 If you wish for other themes I am happy to take a pull request, just place your desired color set in the [themes.go](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.go) and [themes.md](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.md) file and your ready to go for the PR. For gradient themes see the special values for the `Card` property of the `Theme` struct. You can find more infos about how to add gradient values in the [themes.go](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.go) file.
 
@@ -79,7 +80,7 @@ If you wish for other themes I am happy to take a pull request, just place your 
 > :warning: **Important:** 
 > This feature will eventually be expanded in a way to hide other infos like `honor` from the card. Therefore it is not guaranteed that it will stay exact the same.
 
-![Codewars](https://github.r2v.ch/codewars?user=dinifarb&hide_clan=true)
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&hide_clan=true&cache_control=86400)
 
 ### All params together
 
@@ -87,7 +88,14 @@ If you wish for other themes I am happy to take a pull request, just place your 
 ![Codewars](https://github.r2v.ch/codewars?user=USERNAME&name=true&top_languages=true&stroke=%23b362ff&theme=purple_dark)
 ```
 
-![Codewars](https://github.r2v.ch/codewars?user=dinifarb&name=true&top_languages=true&stroke=%23b362ff&theme=purple_dark)
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&name=true&top_languages=true&stroke=%23b362ff&theme=purple_dark&cache_control=86400)
+
+### Cache Control
+The `cache_control` query parameter allows you to change the [Cache-Control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control?retiredLocale=de) HTTP header value. It only requires the specification of the number of seconds, which will then be added as `max-age=<value>` like this:
+
+```md
+![Codewars](https://github.r2v.ch/codewars?user=USERNAME&cache_control=86400)
+```
 
 ----
 ## Link to when clicked
@@ -97,7 +105,7 @@ The pattern for linking svg content `![name](link to svg)` can be wrapped in `[]
 [![Codewars](https://github.r2v.ch/codewars?user=USERNAME)](LINK)
 ```
 
-[![Codewars](https://github.r2v.ch/codewars?user=dinifarb&name=true)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+[![Codewars](https://github.r2v.ch/codewars?user=dinifarb&name=true&cache_control=86400)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 ----
 
 ## As Image
@@ -112,7 +120,7 @@ Optional to the svg ref markdown style it is possible to load the card as image.
 ```
 <p align="center" >
     <a href="LINK TO: WHEN CLICKED">
-      <img src="https://github.r2v.ch/codewars?user=dinifarb" />
+      <img src="https://github.r2v.ch/codewars?user=dinifarb&cache_control=86400" />
     </a>
 </p>
 
