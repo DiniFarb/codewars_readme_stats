@@ -33,6 +33,7 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 | [theme](https://github.com/dinifarb/codewars_readme_stats#Themes) |no| sets a theme for the card |`theme=light`<br>`theme=dark`|
 | [hide_clan](https://github.com/dinifarb/codewars_readme_stats#hide-clan) |no| removes the clan name from the card |`hide_clan=true`|
 | [cache-control](https://github.com/dinifarb/codewars_readme_stats#cache-control) |no| changes the cache-control http header value |`cache_control=86400`|
+| [animation](https://github.com/dinifarb/codewars_readme_stats#cache-control) |no| can be used to disable the animations |`animation=false`|
 
 ## Examples for all query params
 
@@ -95,6 +96,14 @@ The `cache_control` query parameter allows you to change the [Cache-Control](htt
 
 ```md
 ![Codewars](https://github.r2v.ch/codewars?user=USERNAME&cache_control=86400)
+```
+
+### Animation
+The Animations are enabled by default. The 
+ `animation` query parameter allows you to disable it.
+
+```md
+![Codewars](https://github.r2v.ch/codewars?user=USERNAME&animation=false)
 ```
 
 ----
