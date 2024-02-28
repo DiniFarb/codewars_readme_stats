@@ -67,7 +67,7 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 This allows you to change de default codewars like theme. You can find a example of all themes [here](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.md). 
 
 ```md
-![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=gradient)
+![Codewars](https://github.r2v.ch/codewars?user=USERNAME&theme=gradient)
 ```
 ![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=gradient&cache_control=86400)
 
