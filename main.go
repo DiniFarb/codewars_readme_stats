@@ -5,24 +5,20 @@ import (
 	"log"
 	"net/http"
 	"os"
-
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	gin.SetMode(gin.ReleaseMode)
-	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
-		c.Redirect(http.StatusTemporaryRedirect, "https://github.com/dinifarb/codewars_readme_stats")
-	})
-	r.GET("/codewars", routes.GetCodewarsCard)
-	r.GET("/health", routes.Health)
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "3000"
 	}
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "https://github.com/dinifarb/codewars_readme_stats", http.StatusPermanentRedirect)
+	})
+	http.HandleFunc("/codewars", routes.GetCodewarsCard)
+	http.HandleFunc("/health", routes.Health)
 	log.Println("Start service on port::: ", port)
-	err := r.Run(":" + port)
+	err := http.ListenAndServe(":"+port, nil)
 	if err != nil {
 		log.Fatal(err)
 	}

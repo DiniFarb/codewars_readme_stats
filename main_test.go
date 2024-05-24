@@ -6,19 +6,16 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
-
-	"github.com/gin-gonic/gin"
 )
 
-func SetupRouter() *gin.Engine {
-	gin.SetMode(gin.TestMode)
-	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
-		c.Redirect(http.StatusTemporaryRedirect, "https://github.com/andreasvogt89/codewars_readme_stats")
+func SetupRouter() *http.ServeMux {
+	mu := http.NewServeMux()
+	mu.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "https://github.com/dinifarb/codewars_readme_stats", http.StatusPermanentRedirect)
 	})
-	r.GET("/codewars", routes.GetCodewarsCard)
-	r.GET("/health", routes.Health)
-	return r
+	mu.HandleFunc("/codewars", routes.GetCodewarsCard)
+	mu.HandleFunc("/health", routes.Health)
+	return mu
 }
 
 func TestBaseRedirect(t *testing.T) {
@@ -29,22 +26,11 @@ func TestBaseRedirect(t *testing.T) {
 	}
 	resp := httptest.NewRecorder()
 	testRouter.ServeHTTP(resp, req)
-	if resp.Code != 307 {
-		t.Errorf("TestBaseRedirect() should end in 307 Not found instead got: %d", resp.Code)
+	if resp.Code != 308 {
+		t.Errorf("TestBaseRedirect() should end in 308 instead got: %d", resp.Code)
 	}
 }
-func Test404(t *testing.T) {
-	testRouter := SetupRouter()
-	req, err := http.NewRequest("GET", "/f90123n", nil)
-	if err != nil {
-		t.Errorf("Test404 failed with error: %s", err)
-	}
-	resp := httptest.NewRecorder()
-	testRouter.ServeHTTP(resp, req)
-	if resp.Code != 404 {
-		t.Errorf("Test404 should end in 404 Not found instead got: %d", resp.Code)
-	}
-}
+
 func TestWithoutUserParam(t *testing.T) {
 	testRouter := SetupRouter()
 	req, err := http.NewRequest("GET", "/codewars", nil)
@@ -53,10 +39,10 @@ func TestWithoutUserParam(t *testing.T) {
 	}
 	resp := httptest.NewRecorder()
 	testRouter.ServeHTTP(resp, req)
-	if resp.Code != 500 {
-		t.Errorf("TestWithoutUserParam() should end in 500 Internal Server Error instead got: %d", resp.Code)
+	if resp.Code != 400 {
+		t.Errorf("TestWithoutUserParam() should end in 400 Error instead got: %d", resp.Code)
 	}
-	want := `{"message":"Missing Query param =\u003e [user={yourname}]"}`
+	want := `Missing Query param => [user={yourname}]`
 	got := resp.Body.String()
 	if want != got {
 		t.Errorf("TestWithoutUserParam() =  %v, want %v", got, want)

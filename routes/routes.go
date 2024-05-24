@@ -5,14 +5,13 @@ import (
 	"log"
 	"net/http"
 	"os"
-
-	"github.com/gin-gonic/gin"
 )
 
-func GetCodewarsCard(c *gin.Context) {
-	username := c.Request.URL.Query().Get("user")
+func GetCodewarsCard(w http.ResponseWriter, r *http.Request) {
+	username := r.URL.Query().Get("user")
 	if username == "" {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Missing Query param => [user={yourname}]"})
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Missing Query param => [user={yourname}]"))
 		return
 	}
 
@@ -20,33 +19,37 @@ func GetCodewarsCard(c *gin.Context) {
 	err := user.GetUserData(username)
 	if err != nil {
 		log.Println("Get Userdata failed with: ", err)
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Could not get Userdata from codewars"})
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Could not get Userdata from codewars"))
 		return
 	}
 
-	card, err := codewars.CreateSvg(c.Request.URL.Query(), &user)
+	card, err := codewars.CreateSvg(r.URL.Query(), &user)
 	if err != nil {
 		log.Println("Cunstruct codewars card failed with: ", err)
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": "Internal server error while constructing codewars card"})
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Internal server error while constructing codewars card"))
 		return
 	}
 
-	cache := c.Request.URL.Query().Get("cache_control")
+	cache := r.URL.Query().Get("cache_control")
 	if cache == "" {
-		c.Writer.Header().Set("Cache-Control", "public, max-age=no-cache")
+		w.Header().Set("Cache-Control", "public, max-age=no-cache")
 	} else {
-		c.Writer.Header().Set("Cache-Control", "public, max-age="+cache)
+		w.Header().Set("Cache-Control", "public, max-age="+cache)
 	}
-	c.Writer.Header().Set("Content-Type", "image/svg+xml")
-	c.String(http.StatusOK, card)
+	w.Header().Set("Content-Type", "image/svg+xml")
+	w.Write([]byte(card))
 }
 
-func Health(c *gin.Context) {
-	c.Writer.Header().Set("Content-Type", "image/svg+xml")
-	c.Writer.Header().Set("Cache-Control", "public, max-age=no-cache")
+func Health(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "image/svg+xml")
+	w.Header().Set("Cache-Control", "public, max-age=no-cache")
 	content, err := os.ReadFile("./routes/assets/on.svg")
 	if err != nil {
-		c.AbortWithError(400, err)
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Could not read health check file"))
+		return
 	}
-	c.String(http.StatusOK, string(content))
+	w.Write([]byte(content))
 }
