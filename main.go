@@ -12,14 +12,12 @@ func main() {
 	if port == "" {
 		port = "3000"
 	}
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	mu := http.NewServeMux()
+	mu.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "https://github.com/dinifarb/codewars_readme_stats", http.StatusPermanentRedirect)
 	})
-	http.HandleFunc("/codewars", routes.GetCodewarsCard)
-	http.HandleFunc("/health", routes.Health)
+	mu.HandleFunc("/codewars", routes.GetCodewarsCard)
+	mu.HandleFunc("/health", routes.Health)
 	log.Println("Start service on port::: ", port)
-	err := http.ListenAndServe(":"+port, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
+	log.Fatal(http.ListenAndServe(":"+port, mu))
 }
