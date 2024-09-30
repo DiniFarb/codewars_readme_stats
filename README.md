@@ -9,10 +9,6 @@ Display your codewars stats at your [github readme profile](https://docs.github.
     </a>
 </p>
 
-> :warning: **Note:** 
-> I have currently a issue with my DNS zones... working on getting the service back up
-
-
 ## Basic Example
 
 Just replace `USERNAME` in the string below by your codewars username and copy-paste it to your github profile readme.
