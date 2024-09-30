@@ -6,10 +6,11 @@ Display your codewars stats at your [github readme profile](https://docs.github.
 <p align="center">
    <a href="https://github.r2v.ch/"> 
       <img src="https://github.r2v.ch/health"/ alt="Currently down 🙃">
-      > :warning: **Note:** 
-      > I have currently a issue with my DNS zones... working on getting the service back up</p>
     </a>
 </p>
+
+> :warning: **Note:** 
+> I have currently a issue with my DNS zones... working on getting the service back up
 
 
 ## Basic Example
