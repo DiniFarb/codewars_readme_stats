@@ -29,8 +29,12 @@ type CardData struct {
 	ShowTopLangs      bool
 	Nickname          bool
 	HideClan          bool
+	HideTitle         bool
 	HasGradient       bool
 	AnimationDisabeld bool
+	contentPointer_y  int
+	levelPointer_y    int
+	cardHeight        int
 }
 
 func CreateSvg(settings url.Values, user *User) (string, error) {
@@ -52,14 +56,20 @@ func CreateSvg(settings url.Values, user *User) (string, error) {
 		Nickname:          settings.Get("name") == "true",
 		ShowTopLangs:      settings.Get("top_languages") == "true",
 		HideClan:          settings.Get("hide_clan") == "true",
+		HideTitle:         settings.Get("hide_title") == "true",
 		HasGradient:       strings.HasPrefix(settings.Get("theme"), "gradient"),
 		AnimationDisabeld: settings.Get("animation") == "false",
+		contentPointer_y:  25,
+		levelPointer_y:    0,
+		cardHeight:        155,
 	}
 	card.CreateSvg()
 	if card.HasGradient {
 		card.SetGradient()
 	}
-	card.SetTitle()
+	if !card.HideTitle {
+		card.SetTitle()
+	}
 	card.SetStatsTexts()
 	card.SetLevel()
 	if card.ShowTopLangs {
@@ -70,17 +80,17 @@ func CreateSvg(settings url.Values, user *User) (string, error) {
 }
 
 func (c *CardData) CreateSvg() {
-	height := 195
-	switch {
-	case c.ShowTopLangs && c.HideClan:
-		height = 280
-	case c.ShowTopLangs:
-		height = 255
-	case c.HideClan:
-		height = 170
+	if !c.HideTitle {
+		c.cardHeight += 15
 	}
-	box := fmt.Sprintf(`viewBox="0 0 500 %d"`, height)
-	c.Svg.Start(500, height, box)
+	if !c.HideClan {
+		c.cardHeight += 25
+	}
+	if c.ShowTopLangs {
+		c.cardHeight += 85
+	}
+	box := fmt.Sprintf(`viewBox="0 0 500 %d"`, c.cardHeight)
+	c.Svg.Start(500, c.cardHeight, box)
 	attr := []string{`rx="4.5"`}
 	if c.ShowStroke {
 		attr = append(attr, fmt.Sprintf(`stroke="%s"`, c.StrokeColor))
@@ -90,7 +100,7 @@ func (c *CardData) CreateSvg() {
 	} else {
 		attr = append(attr, fmt.Sprintf(`fill="%s"`, c.Theme.CardColor))
 	}
-	c.Svg.Rect(0, 0, 500, height, strings.Join(attr, " "))
+	c.Svg.Rect(0, 0, 500, c.cardHeight, strings.Join(attr, " "))
 }
 
 func (c *CardData) SetTitle() {
@@ -108,7 +118,8 @@ func (c *CardData) SetTitle() {
 	} else {
 		name = fmt.Sprintf(name, c.User.Username)
 	}
-	c.Svg.Text(10, 25, name, attr...)
+	c.Svg.Text(10, c.contentPointer_y, name, attr...)
+	c.contentPointer_y += 25
 	c.AddAnimation("title", "0.3")
 }
 
@@ -130,22 +141,24 @@ func (c *CardData) SetStatsTexts() {
 		fmt.Sprintf(`font-family="%s"`, c.Theme.Font),
 		`id="title"`,
 	}
-	height := 60
 	delay := 0.2
 	c.Svg.Group(attr...)
+	start_y := c.contentPointer_y
 	for i, stat := range stats {
 		key := strings.Split(stat, "-")[0]
 		value := strings.Split(stat, "-")[1]
 		idKey := fmt.Sprintf("k-%d", i)
 		delayString := fmt.Sprintf(`%.1f`, delay)
-		c.Svg.Text(15, height, key, `opacity="0"`, fmt.Sprintf(`id="%s"`, idKey))
+		c.Svg.Text(15, c.contentPointer_y, key, `opacity="0"`, fmt.Sprintf(`id="%s"`, idKey))
 		c.AddAnimation(idKey, delayString)
 		idValue := fmt.Sprintf("v-%d", i)
-		c.Svg.Text(150, height, value, `opacity="0"`, fmt.Sprintf(`id="%s"`, idValue))
+		c.Svg.Text(150, c.contentPointer_y, value, `opacity="0"`, fmt.Sprintf(`id="%s"`, idValue))
 		c.AddAnimation(idValue, delayString)
-		height += 25
+		c.contentPointer_y += 25
 		delay += 0.2
 	}
+	halfstats := ((c.contentPointer_y - 25) - start_y)
+	c.levelPointer_y = start_y + halfstats/2
 	c.Svg.Gend()
 }
 
@@ -158,7 +171,7 @@ func (c *CardData) SetLevel() {
 		`opacity="0"`,
 		`id="level"`,
 	}
-	c.Svg.Polygon([]int{340, 355, 435, 450, 435, 355}, []int{107, 80, 80, 107, 135, 135}, polyAttr...)
+	c.Svg.Polygon([]int{340, 355, 435, 450, 435, 355}, []int{c.levelPointer_y, c.levelPointer_y - 27, c.levelPointer_y - 27, c.levelPointer_y, c.levelPointer_y + 27, c.levelPointer_y + 27}, polyAttr...)
 	c.AddAnimation("level", "1")
 	textAttr := []string{
 		fmt.Sprintf(`fill="%s"`, c.LevelColor),
@@ -168,7 +181,7 @@ func (c *CardData) SetLevel() {
 		`opacity="0"`,
 		`id="level-text"`,
 	}
-	c.Svg.Text(360, 118, c.User.Ranks.Overall.Name, textAttr...)
+	c.Svg.Text(358, c.levelPointer_y+10, c.User.Ranks.Overall.Name, textAttr...)
 	c.AddAnimation("level-text", "1")
 	c.Svg.Gend()
 }
@@ -219,7 +232,9 @@ func (c *CardData) SetIcons() {
 		`opacity="0"`,
 		`id="top-languages"`,
 	}
-	c.Svg.Text(199, 190, "Top Languages", textAttr...)
+	c.contentPointer_y += 30
+	c.Svg.Text(199, c.contentPointer_y, "Top Languages", textAttr...)
+	c.contentPointer_y += 50
 	c.AddAnimation("top-languages", "0.8")
 	keys := make([]string, 0, len(c.User.Ranks.Languages))
 	for key := range c.User.Ranks.Languages {
@@ -248,7 +263,7 @@ func (c *CardData) SetIcons() {
 			fmt.Sprintf(`fill="%s"`, c.Theme.IconColor),
 			fmt.Sprintf(`id="icon-%d"`, i),
 			`opacity="0"`,
-			fmt.Sprintf(`transform="translate(%d, 244)"`, x),
+			fmt.Sprintf(`transform="translate(%d, %d)"`, x, c.contentPointer_y),
 		}
 		c.Svg.Group(attr...)
 		if icon, ok := Icons[k]; ok {

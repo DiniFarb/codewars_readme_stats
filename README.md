@@ -31,6 +31,7 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 | [stroke](https://github.com/dinifarb/codewars_readme_stats#Set-card-border) |no|sets a border with the passed in color around the card |`stroke=black`<br>`stroke=rgb(0,0,0)`<br> `stroke=%23000000`|
 | [theme](https://github.com/dinifarb/codewars_readme_stats#Themes) |no| sets a theme for the card |`theme=light`<br>`theme=dark`|
 | [hide_clan](https://github.com/dinifarb/codewars_readme_stats#hide-clan) |no| removes the clan name from the card |`hide_clan=true`|
+| [hide_title](https://github.com/dinifarb/codewars_readme_stats#hide-title) |no| removes the title from the card |`hide_title=true`|
 | [cache-control](https://github.com/dinifarb/codewars_readme_stats#cache-control) |no| changes the cache-control http header value |`cache_control=86400`|
 | [animation](https://github.com/dinifarb/codewars_readme_stats#cache-control) |no| can be used to disable the animations |`animation=false`|
 
@@ -72,15 +73,22 @@ This allows you to change de default codewars like theme. You can find a example
 
 If you wish for other themes I am happy to take a pull request, just place your desired color set in the [themes.go](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.go) and [themes.md](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.md) file and your ready to go for the PR. For gradient themes see the special values for the `Card` property of the `Theme` struct. You can find more infos about how to add gradient values in the [themes.go](https://github.com/dinifarb/codewars_readme_stats/blob/master/codewars/themes.go) file.
 
-### Hide Clan
+### Hide clan
 
 ```md
 ![Codewars](https://github.r2v.ch/codewars?user=USERNAME&hide_clan=true)
 ```
-> :warning: **Important:** 
-> This feature will eventually be expanded in a way to hide other infos like `honor` from the card. Therefore it is not guaranteed that it will stay exact the same.
 
 ![Codewars](https://github.r2v.ch/codewars?user=dinifarb&hide_clan=true&cache_control=86400)
+
+
+### Hide title
+
+```md
+![Codewars](https://github.r2v.ch/codewars?user=USERNAME&hide_title=true)
+``` 
+
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&hide_title=true&cache_control=86400)
 
 ### All params together
 
