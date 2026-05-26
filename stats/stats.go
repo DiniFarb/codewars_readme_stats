@@ -9,7 +9,7 @@ import (
 	"sync"
 )
 
-const statsFile = "stats.json"
+const statsFile = "./stats/stats.json"
 
 type StatsData struct {
 	UniqueUsers   map[string]bool `json:"unique_users"`
