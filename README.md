@@ -34,6 +34,7 @@ You can add the following query params to the base url: `https://github.r2v.ch/c
 | [hide_title](https://github.com/dinifarb/codewars_readme_stats#hide-title) |no| removes the title from the card |`hide_title=true`|
 | [cache-control](https://github.com/dinifarb/codewars_readme_stats#cache-control) |no| changes the cache-control http header value |`cache_control=86400`|
 | [animation](https://github.com/dinifarb/codewars_readme_stats#cache-control) |no| can be used to disable the animations |`animation=false`|
+| [wave](https://github.com/dinifarb/codewars_readme_stats#wave) |no| adds a slow wave animation to gradient backgrounds |`wave=true`|
 
 ## Examples for all query params
 
@@ -112,6 +113,15 @@ The Animations are enabled by default. The
 ```md
 ![Codewars](https://github.r2v.ch/codewars?user=USERNAME&animation=false)
 ```
+
+### Wave
+The `wave` query parameter adds a slow moving gradient animation that looks like waves. It only works with gradient themes and creates a subtle left-to-right motion on the right side of the card so it does not interfere with the stats text.
+
+```md
+![Codewars](https://github.r2v.ch/codewars?user=USERNAME&theme=gradient&wave=true)
+```
+
+![Codewars](https://github.r2v.ch/codewars?user=dinifarb&theme=gradient&wave=true&cache_control=86400)
 
 ----
 ## Link to when clicked

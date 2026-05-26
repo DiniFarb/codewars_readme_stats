@@ -31,6 +31,7 @@ type CardData struct {
 	HideClan          bool
 	HideTitle         bool
 	HasGradient       bool
+	WaveAnimation     bool
 	AnimationDisabeld bool
 	contentPointer_y  int
 	levelPointer_y    int
@@ -58,6 +59,7 @@ func CreateSvg(settings url.Values, user *User) (string, error) {
 		HideClan:          settings.Get("hide_clan") == "true",
 		HideTitle:         settings.Get("hide_title") == "true",
 		HasGradient:       strings.HasPrefix(settings.Get("theme"), "gradient"),
+		WaveAnimation:     settings.Get("wave") == "true",
 		AnimationDisabeld: settings.Get("animation") == "false",
 		contentPointer_y:  25,
 		levelPointer_y:    0,
@@ -207,18 +209,31 @@ func (c *CardData) SetGradient() error {
 		}
 		parsedVals = append(parsedVals, uint8(x))
 	}
-	c.Svg.Group()
-	c.Svg.LinearGradient("grad",
-		parsedVals[0],
-		parsedVals[1],
-		parsedVals[2],
-		parsedVals[3],
-		[]svg.Offcolor{
-			{Color: vals[0], Offset: parsedVals[4], Opacity: 1},
-			{Color: vals[1], Offset: parsedVals[5], Opacity: 1},
-		},
-	)
-	c.Svg.Gend()
+
+	if c.WaveAnimation && !c.AnimationDisabeld {
+		c.Svg.Group()
+		fmt.Fprintf(c.Svg.Writer, "<linearGradient id=\"grad\" x1=\"%d%%\" y1=\"%d%%\" x2=\"%d%%\" y2=\"%d%%\">\n",
+			parsedVals[0], parsedVals[1], parsedVals[2], parsedVals[3])
+		fmt.Fprintf(c.Svg.Writer, "<stop offset=\"%d%%\" stop-color=\"%s\" stop-opacity=\"1\"/>\n", parsedVals[4], vals[0])
+		fmt.Fprintf(c.Svg.Writer, "<stop offset=\"%d%%\" stop-color=\"%s\" stop-opacity=\"1\"/>\n", parsedVals[5], vals[1])
+		fmt.Fprintf(c.Svg.Writer, "<animate attributeName=\"x1\" values=\"40%%;60%%;40%%\" dur=\"12s\" repeatCount=\"indefinite\"/>\n")
+		fmt.Fprintf(c.Svg.Writer, "<animate attributeName=\"x2\" values=\"100%%;80%%;100%%\" dur=\"14s\" repeatCount=\"indefinite\"/>\n")
+		fmt.Fprintf(c.Svg.Writer, "</linearGradient>\n")
+		c.Svg.Gend()
+	} else {
+		c.Svg.Group()
+		c.Svg.LinearGradient("grad",
+			parsedVals[0],
+			parsedVals[1],
+			parsedVals[2],
+			parsedVals[3],
+			[]svg.Offcolor{
+				{Color: vals[0], Offset: parsedVals[4], Opacity: 1},
+				{Color: vals[1], Offset: parsedVals[5], Opacity: 1},
+			},
+		)
+		c.Svg.Gend()
+	}
 	return nil
 }
 

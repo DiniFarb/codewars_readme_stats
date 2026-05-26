@@ -2,12 +2,14 @@ package routes
 
 import (
 	"dinifarb/codewars_readme_stats/codewars"
+	"dinifarb/codewars_readme_stats/stats"
 	"log"
 	"net/http"
 	"os"
 )
 
 func GetCodewarsCard(w http.ResponseWriter, r *http.Request) {
+	stats.Record("/codewars", r.URL.Query())
 	username := r.URL.Query().Get("user")
 	if username == "" {
 		w.WriteHeader(http.StatusBadRequest)
@@ -43,6 +45,7 @@ func GetCodewarsCard(w http.ResponseWriter, r *http.Request) {
 }
 
 func Health(w http.ResponseWriter, r *http.Request) {
+	stats.Record("/health", nil)
 	w.Header().Set("Content-Type", "image/svg+xml")
 	w.Header().Set("Cache-Control", "public, max-age=no-cache")
 	content, err := os.ReadFile("./routes/assets/on.svg")

@@ -1,0 +1,13 @@
+{
+  "route_hits": {
+    "/codewars": 2
+  },
+  "unique_users": {
+    "dinifarb": true
+  },
+  "features": {
+    "theme=gradient_by_level": 2,
+    "wave=true": 2
+  },
+  "total_requests": 2
+}
